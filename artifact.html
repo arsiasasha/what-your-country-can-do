@@ -188,7 +188,7 @@
   .ledger { border: 1px solid var(--rule-strong); background: var(--paper-raised); box-shadow: var(--shadow); border-radius: 3px; overflow: hidden; }
   .lrow {
     display: grid; grid-template-columns: 34px 1fr auto; gap: 2px 10px; align-items: start;
-    padding: 10px 14px 10px 8px;
+    padding: 11px 14px 11px 8px;
     border-bottom: 1px solid var(--rule);
     cursor: pointer;
     transition: background .15s ease;
@@ -202,14 +202,13 @@
   .lrow input { width: 16px; height: 16px; accent-color: var(--accent); justify-self: center; margin-top: 3px; cursor: pointer; }
   .lrow .li-name { font-size: 15.5px; font-weight: 600; letter-spacing: -.005em; }
   .lrow .li-note { color: var(--ink-2); font-size: 12.5px; font-style: italic; margin-top: 1px; display: block; }
-  .li-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
-  .li-tag {
-    font-family: var(--font-ui); font-size: 9px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
-    color: var(--ink-2); border: 1px solid var(--rule-strong); border-radius: 2px; padding: 2px 6px 1px;
+  .lrow .li-src {
+    display: block; margin-top: 5px;
+    font-family: var(--font-ui); font-size: 9.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--ink-3);
   }
-  .li-tag.kind { color: var(--olive); border-color: var(--olive); opacity: .85; }
+  .lrow .li-src b { color: var(--olive); font-weight: 650; }
   .lrow .li-amt { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 16px; font-weight: 600; }
-  .lrow .li-amt small { display: block; font-size: 9.5px; color: var(--ink-3); font-weight: 400; margin-top: 2px; letter-spacing: .02em; }
 
   .receipt {
     position: sticky; top: 0; z-index: 50;
@@ -269,13 +268,28 @@
   :root[data-theme="dark"] #askBtn { color: #0E120C; }
   @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) #askBtn { color: #0E120C; } }
   #askBtn:hover { background: var(--accent-deep); }
-  .ask-suggest { margin-top: 9px; font-family: var(--font-ui); font-size: 11.5px; color: var(--ink-3); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .ask-suggest button {
-    font-family: var(--font-ui); font-size: 11px; color: var(--ink-2);
-    background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: 999px;
-    padding: 3px 9px; cursor: pointer;
+  .browse-row { margin-top: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .browse-row .b-label { font-family: var(--font-ui); font-size: 11px; color: var(--ink-3); margin-right: 2px; }
+  .bchip {
+    font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+    color: var(--ink-2); background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: 999px;
+    padding: 4px 11px; cursor: pointer;
   }
-  .ask-suggest button:hover { border-color: var(--ink-3); color: var(--ink); }
+  .bchip:hover { border-color: var(--ink-3); color: var(--ink); }
+  .bchip[aria-expanded="true"] { background: var(--gold); border-color: var(--gold); color: var(--paper-raised); }
+  .browse-panel {
+    display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule);
+    grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 6px;
+  }
+  .browse-panel.open { display: grid; }
+  .bitem {
+    font-family: var(--font-ui); font-size: 12px; text-align: left;
+    color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 7px 10px; cursor: pointer; line-height: 1.3;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .bitem:hover { border-color: var(--gold); }
+  .bitem .b-price { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 10.5px; color: var(--ink-3); }
 
   /* ============ TRADE-OFF CARDS ============ */
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 13px; }
@@ -310,6 +324,15 @@
   .card.hidden { display: none; }
   .card.ask { border-left: 3px solid var(--gold); }
   .card.ask .q-echo { font-style: italic; color: var(--ink-2); font-size: 13px; }
+  .card.more {
+    border-style: dashed; box-shadow: none; background: transparent;
+    align-items: center; justify-content: center; text-align: center; gap: 6px;
+    cursor: pointer; min-height: 150px;
+  }
+  .card.more::after { display: none; }
+  .card.more:hover { border-color: var(--ink-2); background: var(--paper-raised); }
+  .card.more .m-big { font-family: var(--font-mono); font-size: 26px; font-weight: 700; color: var(--ink-2); }
+  .card.more .m-label { font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
   .empty-note { color: var(--ink-3); font-style: italic; padding: 24px 4px; border: 1px dashed var(--rule-strong); border-radius: 3px; text-align: center; display: none; }
 
   /* ============ SCALE — dot blocks ============ */
@@ -392,7 +415,6 @@
     section { padding: 46px 0 6px; }
     .mast { grid-template-columns: 1fr; gap: 16px; align-items: start; }
     .lrow .li-amt { text-align: right; }
-    .lrow .li-amt small { display: none; }
     .receipt { gap: 6px 14px; padding: 9px 12px; }
     .receipt .r-total { font-size: 20px; }
     .receipt .r-stats { display: none; }
@@ -442,15 +464,16 @@
         <div class="col-head">
           <p class="eyebrow"><span class="no">STEP 02</span><span>The people's ledger</span></p>
           <h2>The same dollars, spent at home.</h2>
-          <p>National-average unit prices; each card names its source. Filter by policy, or ask for anything.</p>
+          <p>National-average unit prices; each card names its source. Filter by policy, or price anything below.</p>
         </div>
         <div class="askbox">
           <label class="ask-label" for="askInput">Ask the ledger — price anything</label>
           <div class="ask-row">
-            <input id="askInput" placeholder="how many diapers? years of rent? MRI scans?" autocomplete="off" enterkeyhint="search">
+            <input id="askInput" placeholder="how many horses? years of rent? MRI scans?" autocomplete="off" enterkeyhint="search">
             <button id="askBtn" type="button">Price it</button>
           </div>
-          <div class="ask-suggest" id="askSuggest"><span>try:</span></div>
+          <div class="browse-row" id="browseRow" role="group" aria-label="Browse the price book"><span class="b-label">or browse:</span></div>
+          <div class="browse-panel" id="browsePanel"></div>
         </div>
         <div class="chips" id="chips" role="group" aria-label="Filter by policy type"></div>
         <div class="cards" id="cards"></div>
@@ -497,7 +520,7 @@
         <li><strong>Every figure is public.</strong> Defense items come from enacted legislation (FY25 NDAA, the 2025 reconciliation act, the April 2024 supplemental) and official estimates (CBO, GAO, CRS, the services). Program unit costs come from USDA, NEA, NIEER, the College Board, HHS, HUD, KFF, MACPAC, EPA and Census data. All figures are rounded.</li>
         <li><strong>Time spans differ, and are labeled.</strong> A carrier is a one-time purchase; the Pentagon topline is one year; the F-35 figure is a program lifetime. Each ledger row carries its span; each card states its own period ("for a year").</li>
         <li><strong>Unit costs are national averages.</strong> An affordable apartment averages ≈ $300,000 to develop nationally and can run 2–3× that in coastal metros. Local numbers will vary; the arithmetic is yours to rerun.</li>
-        <li><strong>"Ask the ledger" uses a built-in price book</strong> — ballpark national retail averages, rougher than the sourced cards. It answers instantly and never phones home.</li>
+        <li><strong>"Ask the ledger" uses a built-in price book</strong> — ballpark national retail averages (yes, including the horses), rougher than the sourced cards. It answers instantly and never phones home.</li>
         <li><strong>Comparisons are illustrative.</strong> Federal budgeting is not a zero-sum checkbook, and cutting a program does not automatically fund another. But opportunity cost is real — CBO scores it, and so can you.</li>
         <li><strong>This page takes a side</strong> — the side of asking the question. The data does not care which side you take.</li>
       </ol>
@@ -576,23 +599,23 @@ const CATS = [
   { id:'clim',   label:'Climate & infrastructure', color:'var(--c-clim)' },
 ];
 
-/* count cards: how many units the pot buys */
+/* count cards; hero:1 = shown in the default (uncluttered) view */
 const UNITS = [
-  { cat:'food',  unit:2250,   label:'people fed by SNAP for a full year',            src:'USDA, FY 2024', unitNote:'$187/mo avg benefit', noun:'people' },
+  { cat:'food',  hero:1, unit:2250,   label:'people fed by SNAP for a full year',            src:'USDA, FY 2024', unitNote:'$187/mo avg benefit', noun:'people' },
   { cat:'food',  unit:800,    label:'kids on free school lunch for a year',          src:'USDA, 2024–25', unitNote:'$4.45 × 180 school days', noun:'kids' },
   { cat:'food',  unit:1000,   label:'moms & infants on WIC for a year',              src:'USDA, FY 2024', unitNote:'$1,000 per participant', noun:'people' },
-  { cat:'edu',   unit:10000,  label:'children in high-quality pre-K for a year',     src:'NIEER benchmark', unitNote:'$10,000 per seat', noun:'children' },
-  { cat:'edu',   unit:70000,  label:'public-school teachers paid for a year',        src:'NEA, 2023–24', unitNote:'$69,544 avg salary', noun:'teachers' },
+  { cat:'edu',   hero:1, unit:10000,  label:'children in high-quality pre-K for a year',     src:'NIEER benchmark', unitNote:'$10,000 per seat', noun:'children' },
+  { cat:'edu',   hero:1, unit:70000,  label:'public-school teachers paid for a year',        src:'NEA, 2023–24', unitNote:'$69,544 avg salary', noun:'teachers' },
   { cat:'edu',   unit:7395,   label:'students on a maximum Pell Grant',              src:'Dept. of Education', unitNote:'$7,395 max award', noun:'students' },
   { cat:'edu',   unit:15000,  label:'Head Start seats for a year',                   src:'HHS', unitNote:'$15,000 per child', noun:'seats' },
   { cat:'edu',   unit:4050,   label:'years of community-college tuition covered',    src:'College Board, 2024–25', unitNote:'$4,050 avg tuition & fees', noun:'years' },
-  { cat:'house', unit:300000, label:'affordable apartments built',                   src:'GAO · Terner Center', unitNote:'≈ $300k per new unit', noun:'apartments' },
-  { cat:'house', unit:10000,  label:'families housed by a rental voucher for a year',src:'HUD · CBPP', unitNote:'≈ $10k federal cost', noun:'families' },
+  { cat:'house', hero:1, unit:300000, label:'affordable apartments built',                   src:'GAO · Terner Center', unitNote:'≈ $300k per new unit', noun:'apartments' },
+  { cat:'house', hero:1, unit:10000,  label:'families housed by a rental voucher for a year',src:'HUD · CBPP', unitNote:'≈ $10k federal cost', noun:'families' },
   { cat:'house', unit:20000,  label:'homeless people in supportive housing, one year',src:'Natl. Alliance to End Homelessness', unitNote:'≈ $20k per person-year', noun:'people' },
-  { cat:'health',unit:3000,   label:'children covered by CHIP for a year',           src:'MACPAC', unitNote:'≈ $3,000 per child', noun:'children' },
+  { cat:'health',hero:1, unit:3000,   label:'children covered by CHIP for a year',           src:'MACPAC', unitNote:'≈ $3,000 per child', noun:'children' },
   { cat:'health',unit:8000,   label:'adults covered by Medicaid for a year',         src:'KFF', unitNote:'≈ $8,000 per adult', noun:'adults' },
-  { cat:'care',  unit:13000,  label:'toddlers in full-time child care for a year',   src:'Child Care Aware, 2024', unitNote:'$13,000 avg price', noun:'toddlers' },
-  { cat:'clim',  unit:20000,  label:'homes given rooftop solar, outright',           src:'EnergySage avg', unitNote:'≈ $20k per system', noun:'homes' },
+  { cat:'care',  hero:1, unit:13000,  label:'toddlers in full-time child care for a year',   src:'Child Care Aware, 2024', unitNote:'$13,000 avg price', noun:'toddlers' },
+  { cat:'clim',  hero:1, unit:20000,  label:'homes given rooftop solar, outright',           src:'EnergySage avg', unitNote:'≈ $20k per system', noun:'homes' },
   { cat:'clim',  unit:6000,   label:'lead water lines replaced',                     src:'EPA', unitNote:'≈ 9M lines remain in the U.S.', noun:'lines' },
   { cat:'clim',  unit:375000, label:'electric school buses on the road',             src:'EPA Clean School Bus', unitNote:'≈ $375k incl. charger', noun:'buses' },
   { cat:'clim',  unit:6000,   label:'rural homes wired with fiber internet',         src:'BEAD program avg', unitNote:'≈ $6k per connection', noun:'homes' },
@@ -600,8 +623,8 @@ const UNITS = [
 
 /* duration cards: how long the pot runs an entire program */
 const PROGRAMS = [
-  { cat:'food',  annual:99.8, label:'the entire SNAP program — food aid for 42 million Americans', src:'USDA, FY 2024' },
-  { cat:'edu',   annual:72,   label:'universal pre-K for every U.S. 3- and 4-year-old',            src:'7.2M kids × $10k · NIEER' },
+  { cat:'food',  hero:1, annual:99.8, label:'the entire SNAP program — food aid for 42 million Americans', src:'USDA, FY 2024' },
+  { cat:'edu',   hero:1, annual:72,   label:'universal pre-K for every U.S. 3- and 4-year-old',            src:'7.2M kids × $10k · NIEER' },
   { cat:'food',  annual:25,   label:'free breakfast & lunch for every public-school student',      src:'Urban Institute est.' },
   { cat:'care',  annual:105,  label:'the 2021 expanded Child Tax Credit — it cut child poverty 46%', src:'JCT · Columbia CPSP' },
   { cat:'house', annual:15.4, label:'supportive housing for every American counted homeless',      src:'771,480 people × $20k · HUD 2024' },
@@ -628,8 +651,93 @@ const JOBS = [
   { label:'Education', x:2.72 },
 ];
 
-/* ===== ask-the-ledger price book — ballpark U.S. averages, 2024–26 ===== */
+/* ===== ask-the-ledger price book — ballpark U.S. averages, 2024–26 =====
+   browse: category id for the browse panel; bLabel: display name there */
+const BROWSE = [
+  { id:'hh',   label:'Household' },
+  { id:'pets', label:'Animals' },
+  { id:'lux',  label:'Luxury' },
+  { id:'prop', label:'Homes & property' },
+  { id:'eats', label:'Food & drink' },
+  { id:'fun',  label:'Fun & games' },
+];
+
 const CATALOG = [
+  /* ------- household ------- */
+  { browse:'hh', bLabel:'Washer & dryer set', q:['washer','dryer','washing machine'], unit:1800, noun:'washer & dryer sets', note:'mid-range pair' },
+  { browse:'hh', bLabel:'Refrigerator', q:['fridge','refrigerator'], unit:1500, noun:'refrigerators', note:'standard french-door' },
+  { browse:'hh', bLabel:'Dishwasher', q:['dishwasher'], unit:800, noun:'dishwashers', note:'installed' },
+  { browse:'hh', bLabel:'Robot vacuum', q:['roomba','robot vacuum'], unit:400, noun:'robot vacuums', note:'mid-range' },
+  { browse:'hh', bLabel:'Air fryer', q:['air fryer'], unit:120, noun:'air fryers', note:'family size' },
+  { browse:'hh', bLabel:'Espresso machine', q:['espresso'], unit:700, noun:'espresso machines', note:'prosumer entry' },
+  { browse:'hh', bLabel:'Stand mixer', q:['kitchenaid','stand mixer','mixer'], unit:450, noun:'stand mixers', note:'the wedding-registry one' },
+  { browse:'hh', bLabel:'Queen mattress', q:['mattress'], unit:1200, noun:'queen mattresses', note:'mid-range' },
+  { browse:'hh', bLabel:'Couch', q:['couch','sofa'], unit:2000, noun:'couches', note:'3-seater' },
+  { browse:'hh', bLabel:'65-inch TV', q:['tv','television'], unit:500, noun:'65-inch TVs', note:'4K' },
+  { browse:'hh', bLabel:'Year of toilet paper', q:['toilet paper'], unit:120, noun:'household-years of toilet paper', note:'family of four' },
+  { browse:'hh', bLabel:'Costco membership', q:['costco'], unit:65, noun:'Costco memberships', note:'Gold Star, one year' },
+  { browse:'hh', bLabel:'Every streaming service, 1 yr', q:['streaming'], unit:1200, noun:'years of every major streaming service', note:'≈ $100/mo all-in' },
+  /* ------- animals ------- */
+  { browse:'pets', bLabel:'Horse', q:['horse'], unit:10000, noun:'horses', note:'the U.S. only has ≈ 6.7M horses' },
+  { browse:'pets', bLabel:'Pony', q:['pony','ponies'], unit:3000, noun:'ponies', note:'plus hay' },
+  { browse:'pets', bLabel:'Llama', q:['llama'], unit:1500, noun:'llamas', note:'yes, really' },
+  { browse:'pets', bLabel:'Dairy cow', q:['cow','dairy cow'], unit:2000, noun:'dairy cows', note:'milking age' },
+  { browse:'pets', bLabel:'Goat', q:['goat'], unit:300, noun:'goats', note:'lawn included… mowed' },
+  { browse:'pets', bLabel:'Backyard chicken flock', q:['chicken','chickens'], unit:800, noun:'backyard chicken flocks', note:'6 hens + coop' },
+  { browse:'pets', bLabel:'Shelter dog, adopted', q:['shelter dog','puppy','dog adoption'], unit:300, noun:'shelter dogs adopted', note:'fees + first vet visit' },
+  { browse:'pets', bLabel:'Cat, adopted', q:['cat','kitten'], unit:150, noun:'cats adopted', note:'shelter fee' },
+  { browse:'pets', bLabel:'Goldfish', q:['goldfish'], unit:5, noun:'goldfish', note:'bowl not included' },
+  { browse:'pets', bLabel:'African grey parrot', q:['parrot'], unit:2500, noun:'African grey parrots', note:'they talk back' },
+  { browse:'pets', bLabel:'Beehive starter kit', q:['beehive','bees'], unit:700, noun:'beehive starter kits', note:'bees included' },
+  { browse:'pets', bLabel:'Axolotl', q:['axolotl'], unit:80, noun:'axolotls', note:'tank extra' },
+  /* ------- luxury ------- */
+  { browse:'lux', bLabel:'Rolex Submariner', q:['rolex'], unit:10000, noun:'Rolex Submariners', note:'list price' },
+  { browse:'lux', bLabel:'Birkin bag', q:['birkin'], unit:12000, noun:'Birkin bags', note:'if they let you buy one' },
+  { browse:'lux', bLabel:'Lamborghini', q:['lamborghini','lambo'], unit:250000, noun:'Lamborghinis', note:'Huracán-class' },
+  { browse:'lux', bLabel:'Rolls-Royce Phantom', q:['rolls royce','rolls-royce','phantom'], unit:500000, noun:'Rolls-Royce Phantoms', note:'before options' },
+  { browse:'lux', bLabel:'Private jet (G700)', q:['private jet','gulfstream'], unit:80000000, noun:'Gulfstream G700 private jets', note:'list price' },
+  { browse:'lux', bLabel:'Entry superyacht', q:['yacht','superyacht'], unit:8000000, noun:'entry-level superyachts', note:'≈ 80 ft' },
+  { browse:'lux', bLabel:'Small private island', q:['island','private island'], unit:3000000, noun:'small private islands', note:'Caribbean listings' },
+  { browse:'lux', bLabel:'First class to Tokyo', q:['first class'], unit:14000, noun:'first-class round trips to Tokyo', note:'NYC ⇄ HND' },
+  { browse:'lux', bLabel:'Super Bowl ticket', q:['super bowl'], unit:9000, noun:'Super Bowl tickets', note:'50-yard line, resale' },
+  { browse:'lux', bLabel:'Courtside Lakers seat', q:['courtside','lakers'], unit:5000, noun:'courtside Lakers seats', note:'per game' },
+  { browse:'lux', bLabel:'Met Gala ticket', q:['met gala'], unit:75000, noun:'Met Gala tickets', note:'2024 price' },
+  { browse:'lux', bLabel:'Magnum of Dom Pérignon', q:['dom perignon','champagne'], unit:600, noun:'magnums of Dom Pérignon', note:'retail' },
+  /* ------- homes & property ------- */
+  { browse:'prop', bLabel:'Tiny house', q:['tiny house','tiny home'], unit:60000, noun:'tiny houses', note:'built, not the trailer kind' },
+  { browse:'prop', bLabel:'Median U.S. home', q:['median house','house','home'], unit:420000, noun:'median American homes', note:'existing-home median' },
+  { browse:'prop', bLabel:'Median San Francisco home', q:['san francisco home','sf home'], unit:1300000, noun:'median San Francisco homes', note:'yes, median' },
+  { browse:'prop', bLabel:'Manhattan townhouse', q:['townhouse','brownstone'], unit:8000000, noun:'Manhattan townhouses', note:'entry brownstone' },
+  { browse:'prop', bLabel:'NYC parking spot', q:['parking spot','parking'], unit:150000, noun:'Manhattan parking spots', note:'deeded, they exist' },
+  { browse:'prop', bLabel:'Year of NYC rent', q:['nyc rent','manhattan rent'], unit:54000, noun:'years of Manhattan one-bedroom rent', note:'$4,500/mo' },
+  { browse:'prop', bLabel:'Oceanfront beach house', q:['beach house'], unit:1200000, noun:'oceanfront beach houses', note:'Outer Banks-ish' },
+  { browse:'prop', bLabel:'Log cabin kit', q:['log cabin','cabin'], unit:80000, noun:'log-cabin kits', note:'assembly required' },
+  { browse:'prop', bLabel:'Acre of Iowa farmland', q:['farmland','acre of farmland'], unit:12000, noun:'acres of Iowa farmland', note:'2024 average' },
+  { browse:'prop', bLabel:'The White House', q:['white house'], unit:400000000, noun:'White Houses', note:"Zillow's famous Zestimate" },
+  /* ------- food & drink ------- */
+  { browse:'eats', bLabel:'Costco hot dog combo', q:['hot dog','costco hot dog'], unit:1.5, noun:'Costco hot-dog combos', note:'$1.50 since 1985' },
+  { browse:'eats', bLabel:'Avocado toast', q:['avocado toast','avocado'], unit:12, noun:'avocado toasts', note:'brunch price' },
+  { browse:'eats', bLabel:'Chipotle burrito', q:['chipotle','burrito'], unit:10, noun:'Chipotle burritos', note:'guac extra, obviously' },
+  { browse:'eats', bLabel:'Pumpkin spice latte', q:['pumpkin spice','psl'], unit:6.25, noun:'pumpkin spice lattes', note:'grande' },
+  { browse:'eats', bLabel:'Box of Girl Scout cookies', q:['girl scout'], unit:6, noun:'boxes of Girl Scout cookies', note:'Thin Mints assumed' },
+  { browse:'eats', bLabel:'Dozen Krispy Kreme', q:['donut','doughnut','krispy'], unit:17, noun:'dozens of Krispy Kreme donuts', note:'original glazed' },
+  { browse:'eats', bLabel:'In-N-Out Double-Double', q:['in-n-out','in n out'], unit:6, noun:'In-N-Out Double-Doubles', note:'animal style free' },
+  { browse:'eats', bLabel:'DoorDash dinner for 4', q:['doordash','takeout'], unit:80, noun:'DoorDash dinners for four', note:'fees included, painfully' },
+  { browse:'eats', bLabel:'Omakase for two', q:['omakase','sushi'], unit:600, noun:'omakase dinners for two', note:'the nice one' },
+  { browse:'eats', bLabel:'Movie night for two', q:['movie'], unit:45, noun:'movie nights for two', note:'tickets + popcorn' },
+  /* ------- fun & games ------- */
+  { browse:'fun', bLabel:'Disney World family trip', q:['disney trip','disney vacation','disney world'], unit:6000, noun:'Disney World family vacations', note:'family of 4, one week' },
+  { browse:'fun', bLabel:'Backyard pickleball court', q:['pickleball'], unit:30000, noun:'backyard pickleball courts', note:'poured and painted' },
+  { browse:'fun', bLabel:'Above-ground pool', q:['pool'], unit:6000, noun:'above-ground pools', note:'installed' },
+  { browse:'fun', bLabel:'Hot tub', q:['hot tub','jacuzzi'], unit:8000, noun:'hot tubs', note:'6-person' },
+  { browse:'fun', bLabel:'Trampoline', q:['trampoline'], unit:500, noun:'trampolines', note:'net included' },
+  { browse:'fun', bLabel:'Jet ski', q:['jet ski','jetski'], unit:12000, noun:'jet skis', note:'new' },
+  { browse:'fun', bLabel:'Pontoon boat', q:['pontoon','boat'], unit:45000, noun:'pontoon boats', note:'lake-ready' },
+  { browse:'fun', bLabel:'Camper RV', q:['rv','camper'], unit:120000, noun:'camper RVs', note:'class C' },
+  { browse:'fun', bLabel:'Golf club set', q:['golf'], unit:1200, noun:'golf club sets', note:'full bag' },
+  { browse:'fun', bLabel:'Year of Game Pass', q:['game pass','xbox'], unit:200, noun:'years of Xbox Game Pass', note:'Ultimate' },
+  { browse:'fun', bLabel:'Little-league season', q:['little league'], unit:250, noun:'little-league seasons', note:'per kid' },
+  /* ------- typeable extras (no browse tile) ------- */
   { q:['diaper'], unit:900, noun:'babies kept in diapers for a year', note:'≈ $900/yr per baby' },
   { q:['formula'], unit:1800, noun:'babies on formula for a year', note:'≈ $150/mo' },
   { q:['groceries','grocery'], unit:12000, noun:"families' groceries for a year", note:'≈ $1,000/mo, family of four' },
@@ -653,7 +761,6 @@ const CATALOG = [
   { q:['knee replacement'], unit:30000, noun:'knee replacements', note:'avg billed' },
   { q:['daycare','day care'], unit:13000, noun:'years of full-time child care', note:'Child Care Aware avg' },
   { q:['rent'], unit:19200, noun:'years of median rent', note:'$1,600/mo' },
-  { q:['median house','house','home'], unit:420000, noun:'median American homes', note:'existing-home median' },
   { q:['apartment'], unit:300000, noun:'affordable apartments built', note:'new LIHTC unit' },
   { q:['iphone'], unit:999, noun:'iPhones', note:'$999 list' },
   { q:['macbook','laptop'], unit:1000, noun:'laptops', note:'≈ $1,000' },
@@ -715,12 +822,13 @@ const CATALOG = [
   { q:['solar'], unit:20000, noun:'homes given rooftop solar', note:'before tax credit' },
   { q:['pre-k','prek','preschool'], unit:10000, noun:'children in high-quality pre-K for a year', note:'NIEER benchmark' },
 ];
-const ASK_SUGGESTIONS = ['diapers', 'a year of rent', 'Big Macs', 'MRI scans', "nurses' salaries", 'median houses'];
 
 /* ============================ STATE ============================ */
 const selected = new Set(['obbba']);
 let activeCat = 'all';
 let activeMcat = 'all';
+let activeBrowse = null;
+let showAll = false;
 let lastAsk = null;
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -805,14 +913,9 @@ function buildLedger() {
       <span>
         <span class="li-name">${d.name}</span>
         <span class="li-note">${d.note}</span>
-        <span class="li-meta">
-          <span class="li-tag">${d.bill}</span>
-          <span class="li-tag">${d.year}</span>
-          <span class="li-tag kind">${d.kind}</span>
-        </span>
+        <span class="li-src">${d.bill} · ${d.year} · <b>${d.kind}</b></span>
       </span>
-      <span class="li-amt">${fmtB(d.amt)}<small></small></span>`;
-    row.querySelector('.li-amt small').textContent = '$' + (d.amt * B).toLocaleString('en-US');
+      <span class="li-amt">${fmtB(d.amt)}</span>`;
     row.querySelector('input').addEventListener('change', e => {
       e.target.checked ? selected.add(d.id) : selected.delete(d.id);
       row.classList.toggle('on', e.target.checked);
@@ -833,7 +936,16 @@ function renderReceipt() {
     : `<span class="mono">$${fmtInt(p*B/HOUSEHOLDS)}</span> per household · <span class="mono">${fmtB(p/DISTRICTS)}</span> per district`;
 }
 
-/* ============================ PEOPLE CHIPS ============================ */
+/* ============================ PEOPLE CHIPS + CARD VISIBILITY ============================ */
+function applyCardFilter() {
+  document.querySelectorAll('#cards .card').forEach(c => {
+    if (c.classList.contains('ask'))  { c.classList.toggle('hidden', !lastAsk); return; }
+    if (c.classList.contains('more')) { c.classList.toggle('hidden', !(activeCat === 'all' && !showAll)); return; }
+    const show = activeCat === 'all' ? (showAll || c.dataset.hero === '1') : c.dataset.cat === activeCat;
+    c.classList.toggle('hidden', !show);
+  });
+}
+
 function buildChips() {
   const host = $('#chips');
   const mk = (id, label, color) => {
@@ -845,14 +957,11 @@ function buildChips() {
     b.addEventListener('click', () => {
       activeCat = id;
       host.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.cat === id));
-      document.querySelectorAll('#cards .card').forEach(c => {
-        if (c.classList.contains('ask')) return;   // the asked card always shows
-        c.classList.toggle('hidden', id !== 'all' && c.dataset.cat !== id);
-      });
+      applyCardFilter();
     });
     host.appendChild(b);
   };
-  mk('all', 'All policies');
+  mk('all', 'The headlines');
   CATS.forEach(c => mk(c.id, c.label, c.color));
 }
 
@@ -862,9 +971,9 @@ function dotPlan(count) {
   if (count <= 0) return { per:1, dots:0 };
   for (const per of NICE) {
     const d = count / per;
-    if (d <= 220) return { per, dots: Math.max(1, Math.round(d)) };
+    if (d <= 140) return { per, dots: Math.max(1, Math.round(d)) };
   }
-  return { per: NICE[NICE.length-1], dots: 220 };
+  return { per: NICE[NICE.length-1], dots: 140 };
 }
 function fillDots(host, count, animate) {
   const { per, dots } = dotPlan(count);
@@ -901,6 +1010,7 @@ function buildCards() {
     const cat = CATS.find(c => c.id === u.cat);
     const el = document.createElement('article');
     el.className = 'card'; el.dataset.cat = u.cat; el.dataset.i = i;
+    if (u.hero) el.dataset.hero = '1';
     el.style.setProperty('--cat', cat.color);
     el.innerHTML = `
       <div class="cat-line"><span class="dot"></span>${cat.label}</div>
@@ -915,6 +1025,7 @@ function buildCards() {
     const cat = CATS.find(c => c.id === p.cat);
     const el = document.createElement('article');
     el.className = 'card duration'; el.dataset.cat = p.cat; el.dataset.pi = i;
+    if (p.hero) el.dataset.hero = '1';
     el.style.setProperty('--cat', cat.color);
     el.innerHTML = `
       <div class="cat-line"><span class="dot"></span>${cat.label} · runs the whole program</div>
@@ -925,12 +1036,20 @@ function buildCards() {
       <div class="src"><span>$${p.annual >= 1 ? p.annual + 'B' : Math.round(p.annual*1000) + 'M'} per year</span><span>${p.src}</span></div>`;
     host.appendChild(el);
   });
+
+  /* "show everything" tile */
+  const hiddenCount = UNITS.filter(u => !u.hero).length + PROGRAMS.filter(p => !p.hero).length;
+  const more = document.createElement('button');
+  more.className = 'card more'; more.id = 'moreCard'; more.type = 'button';
+  more.innerHTML = `<span class="m-big">+${hiddenCount}</span><span class="m-label">more trade-offs — show everything</span>`;
+  more.addEventListener('click', () => { showAll = true; applyCardFilter(); });
+  host.appendChild(more);
 }
 
 function renderCards() {
   const p = potB();
   $('#emptyNote').style.display = p === 0 ? 'block' : 'none';
-  document.querySelectorAll('#cards .card:not(.duration):not(.ask)').forEach(el => {
+  document.querySelectorAll('#cards .card:not(.duration):not(.ask):not(.more)').forEach(el => {
     const u = UNITS[el.dataset.i];
     const count = p * B / u.unit;
     countUp(el.querySelector('.big'), count, v => fmtCount(v));
@@ -974,10 +1093,10 @@ function renderAskCard() {
   if (!item) {
     card.querySelector('.big').textContent = '?';
     card.querySelector('.big').dataset.v = 0;
-    card.querySelector('.label').textContent = 'not in the price book yet — try one of the suggestions below the box';
+    card.querySelector('.label').textContent = 'not in the price book yet — try browsing the categories above';
     card.querySelector('.dots').innerHTML = '';
     card.querySelector('.dots-cap').textContent = '';
-    card.querySelector('.q-note').textContent = 'built-in price book, ~80 items';
+    card.querySelector('.q-note').textContent = 'built-in price book, 150+ items';
     card.querySelector('.q-echo').textContent = '“' + query + '”';
     return;
   }
@@ -989,23 +1108,43 @@ function renderAskCard() {
   card.querySelector('.q-note').textContent = `${item.note} · ${fmtUnitPrice(item.unit)} each, ballpark`;
   card.querySelector('.q-echo').textContent = '“' + query + '”';
 }
+function askFor(query, item) {
+  lastAsk = { query, item: item ?? findCatalog(query) };
+  renderAskCard();
+  applyCardFilter();
+  $('#askCard').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
+}
 function wireAsk() {
   const input = $('#askInput');
-  const go = () => {
-    const query = input.value.trim();
-    if (!query) return;
-    lastAsk = { query, item: findCatalog(query) };
-    renderAskCard();
-    $('#askCard').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
-  };
+  const go = () => { if (input.value.trim()) askFor(input.value.trim()); };
   $('#askBtn').addEventListener('click', go);
   input.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
-  const sug = $('#askSuggest');
-  ASK_SUGGESTIONS.forEach(s => {
+
+  /* browse categories */
+  const row = $('#browseRow'), panel = $('#browsePanel');
+  BROWSE.forEach(bc => {
     const b = document.createElement('button');
-    b.type = 'button'; b.textContent = s;
-    b.addEventListener('click', () => { input.value = s; go(); });
-    sug.appendChild(b);
+    b.className = 'bchip'; b.type = 'button';
+    b.textContent = bc.label;
+    b.setAttribute('aria-expanded', 'false');
+    b.addEventListener('click', () => {
+      const wasOpen = activeBrowse === bc.id;
+      activeBrowse = wasOpen ? null : bc.id;
+      row.querySelectorAll('.bchip').forEach(c => c.setAttribute('aria-expanded', 'false'));
+      if (!wasOpen) {
+        b.setAttribute('aria-expanded', 'true');
+        panel.innerHTML = '';
+        CATALOG.filter(it => it.browse === bc.id).forEach(it => {
+          const btn = document.createElement('button');
+          btn.className = 'bitem'; btn.type = 'button';
+          btn.innerHTML = `<span>${it.bLabel}</span><span class="b-price">${fmtUnitPrice(it.unit)}</span>`;
+          btn.addEventListener('click', () => { $('#askInput').value = it.bLabel; askFor(it.bLabel, it); });
+          panel.appendChild(btn);
+        });
+      }
+      panel.classList.toggle('open', !wasOpen);
+    });
+    row.appendChild(b);
   });
 }
 
@@ -1034,7 +1173,7 @@ function renderScale() {
   const perDot = PER_CHOICES.find(c => maxVal / c <= 240) ?? 10;
   $('#scaleLegend').lastElementChild.textContent =
     `each dot = ${perDot >= 1 ? '$' + perDot + ' billion' : '$' + (perDot*1000) + ' million'} of spending, everywhere in this section`;
-  const strip = (row, val, isYou) => {
+  const strip = (row, val) => {
     const host = row.querySelector('.dotstrip');
     host.innerHTML = '';
     const n = Math.max(1, Math.round(val / perDot));
@@ -1049,8 +1188,8 @@ function renderScale() {
     host.appendChild(frag);
     row.querySelector('.bar-val').textContent = fmtB(val);
   };
-  strip($('#youBar'), p, true);
-  document.querySelectorAll('#scaleBars .bar-row:not(.you)').forEach(row => strip(row, parseFloat(row.dataset.amt), false));
+  strip($('#youBar'), p);
+  document.querySelectorAll('#scaleBars .bar-row:not(.you)').forEach(row => strip(row, parseFloat(row.dataset.amt)));
   const kicker = $('#scaleKicker');
   if (p === 0) { kicker.style.display = 'none'; return; }
   kicker.style.display = 'block';
@@ -1127,6 +1266,7 @@ buildScale();
 buildJobs();
 wireAsk();
 renderAll();
+applyCardFilter();
 
 /* debug/QA: ?jump=<id> lands instantly with motion completed; ?solo=<id> shows one section only */
 const qaParams = new URLSearchParams(location.search);

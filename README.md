@@ -23,8 +23,13 @@ python3 -m http.server 4173 --directory .
   nuclear, foreign aid, packages), with a running "receipt" (total,
   per-household, per-congressional-district).
 - **Ask the ledger** — a prompt box that prices anything from a built-in
-  price book of ~80 everyday items ("how many diapers?", "years of rent",
-  "MRI scans"). Instant, offline, no API calls.
+  price book of 150+ items ("how many diapers?", "years of rent", "MRI
+  scans"), plus six browsable categories of tappable items — Household,
+  Animals (yes, horses), Luxury, Homes & property, Food & drink, Fun &
+  games. Instant, offline, no API calls.
+- **An uncluttered default** — "The headlines" shows ten flagship trade-offs;
+  a "+13 more" tile expands to everything, and policy filters show full
+  categories.
 - **The people's ledger** — 23 trade-off cards (18 unit-price cards + 5
   "runs the whole program for X" duration cards), filterable by policy type,
   each with an animated isotype dot grid and a named federal source.
