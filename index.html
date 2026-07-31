@@ -124,10 +124,11 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(ellipse 1200px 500px at 50% -100px, var(--accent-wash), transparent 70%);
+      radial-gradient(ellipse 1200px 420px at 50% -80px, var(--accent-wash), transparent 70%);
     background-repeat: no-repeat;
   }
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 1230px; margin: 0 auto; padding: 0 24px; }
+  .wrap-tight { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
   a { color: var(--accent); }
   a:hover { color: var(--accent-deep); }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
@@ -146,79 +147,58 @@
   .eyebrow .no { color: var(--gold); font-weight: 700; }
   .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
-  /* double ledger rule */
-  .dbl-rule { border: 0; border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); height: 4px; background: transparent; }
-
-  section { padding: 72px 0 8px; }
-  .sec-head { margin: 14px 0 8px; }
+  section { padding: 58px 0 8px; }
+  .sec-head { margin: 12px 0 6px; }
   .sec-head h2 {
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(24px, 3.2vw, 32px);
     font-weight: 600;
     letter-spacing: -.01em;
     text-wrap: balance;
-    margin: 10px 0 10px;
+    margin: 8px 0 8px;
   }
-  .sec-head p.sub { color: var(--ink-2); max-width: 62ch; font-size: 16.5px; }
+  .sec-head p.sub { color: var(--ink-2); max-width: 62ch; font-size: 15.5px; }
 
-  /* ============ HERO ============ */
-  header.hero { padding: 68px 0 40px; }
+  /* ============ MASTHEAD (compact hero) ============ */
+  header.hero { padding: 30px 0 4px; }
+  .mast { display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px 56px; align-items: end;
+          border-bottom: 1px solid var(--rule-strong); box-shadow: 0 3px 0 -2px var(--rule-strong); padding-bottom: 20px; }
   .hero h1 {
-    font-size: clamp(40px, 6.4vw, 72px);
-    line-height: 1.04;
+    font-size: clamp(27px, 3.6vw, 42px);
+    line-height: 1.06;
     font-weight: 600;
     letter-spacing: -.015em;
     text-wrap: balance;
-    max-width: 17ch;
-    margin: 26px 0 20px;
+    margin: 12px 0 8px;
   }
   .hero h1 em { font-style: italic; color: var(--accent); }
-  .hero .lede {
-    font-size: clamp(17px, 2vw, 20px);
-    color: var(--ink-2);
-    max-width: 58ch;
-    margin-bottom: 40px;
-  }
+  .hero .lede { font-size: 15px; color: var(--ink-2); max-width: 56ch; }
   .hero .lede strong { color: var(--ink); font-weight: 600; }
-
-  .ticker-card {
-    border-top: 1px solid var(--rule-strong);
-    border-bottom: 1px solid var(--rule-strong);
-    box-shadow: inset 0 3px 0 -2px var(--rule-strong), inset 0 -3px 0 -2px var(--rule-strong);
-    padding: 22px 4px 24px;
-    display: flex; flex-wrap: wrap; gap: 8px 48px; align-items: baseline; justify-content: space-between;
-  }
   .ticker-label {
-    font-family: var(--font-ui); font-size: 11px; font-weight: 650;
-    letter-spacing: .16em; text-transform: uppercase; color: var(--olive);
-    margin-bottom: 6px;
+    font-family: var(--font-ui); font-size: 10px; font-weight: 700;
+    letter-spacing: .15em; text-transform: uppercase; color: var(--olive);
+    margin-bottom: 4px;
   }
   #ticker {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
-    font-size: clamp(34px, 5.4vw, 58px);
+    font-size: clamp(30px, 3.6vw, 46px);
     font-weight: 600;
     letter-spacing: -.01em;
     line-height: 1;
     color: var(--ink);
   }
-  .ticker-note { color: var(--ink-3); font-size: 14.5px; font-style: italic; max-width: 34ch; }
-  .ticker-note .mono { font-style: normal; font-size: 13px; color: var(--ink-2); }
+  .ticker-note { color: var(--ink-3); font-size: 12.5px; font-style: italic; margin-top: 6px; }
+  .ticker-note .mono { font-style: normal; font-size: 11.5px; color: var(--ink-2); }
 
-  .plate-marks { text-align: center; color: var(--rule-strong); letter-spacing: 1.2em; padding-left: 1.2em; margin: 46px 0 0; font-size: 12px; user-select: none; }
+  /* ============ WORKBENCH — two ledgers side by side ============ */
+  .duo { display: grid; grid-template-columns: 1fr; gap: 44px; margin-top: 14px; }
+  .col-head h2 { font-size: clamp(21px, 2.4vw, 26px); font-weight: 600; letter-spacing: -.01em; margin: 8px 0 4px; }
+  .col-head p { color: var(--ink-2); font-size: 14px; margin-bottom: 12px; }
 
-  /* ============ LEDGER (step 1) ============ */
-  .ledger { border: 1px solid var(--rule-strong); background: var(--paper-raised); box-shadow: var(--shadow); border-radius: 3px; overflow: hidden; margin-top: 22px; }
-  .ledger-head {
-    display: grid; grid-template-columns: 44px 1fr 150px; gap: 0 16px;
-    padding: 10px 20px 9px 14px;
-    font-family: var(--font-ui); font-size: 10.5px; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
-    border-bottom: 1px solid var(--rule-strong);
-    background: var(--paper-sunken);
-  }
-  .ledger-head .amt { text-align: right; }
+  .ledger { border: 1px solid var(--rule-strong); background: var(--paper-raised); box-shadow: var(--shadow); border-radius: 3px; overflow: hidden; }
   .lrow {
-    display: grid; grid-template-columns: 44px 1fr 150px; gap: 2px 16px; align-items: center;
-    padding: 13px 20px 13px 14px;
+    display: grid; grid-template-columns: 34px 1fr auto; gap: 2px 10px; align-items: start;
+    padding: 10px 14px 10px 8px;
     border-bottom: 1px solid var(--rule);
     cursor: pointer;
     transition: background .15s ease;
@@ -228,76 +208,103 @@
   .lrow:hover { background: var(--olive-wash); }
   .lrow.on { background: var(--accent-wash); }
   .lrow.on::before { content: ""; position: absolute; left: 0; top: -1px; bottom: -1px; width: 3px; background: var(--accent); }
-  .lrow input { width: 17px; height: 17px; accent-color: var(--accent); justify-self: center; cursor: pointer; }
-  .lrow .li-name { font-size: 17.5px; font-weight: 600; letter-spacing: -.005em; }
-  .lrow .li-note { color: var(--ink-2); font-size: 14px; font-style: italic; margin-top: 1px; }
-  .li-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+  .lrow.hidden { display: none; }
+  .lrow input { width: 16px; height: 16px; accent-color: var(--accent); justify-self: center; margin-top: 3px; cursor: pointer; }
+  .lrow .li-name { font-size: 15.5px; font-weight: 600; letter-spacing: -.005em; }
+  .lrow .li-note { color: var(--ink-2); font-size: 12.5px; font-style: italic; margin-top: 1px; display: block; }
+  .li-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
   .li-tag {
-    font-family: var(--font-ui); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--ink-2); border: 1px solid var(--rule-strong); border-radius: 2px; padding: 2px 7px 1px;
+    font-family: var(--font-ui); font-size: 9px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--ink-2); border: 1px solid var(--rule-strong); border-radius: 2px; padding: 2px 6px 1px;
   }
   .li-tag.kind { color: var(--olive); border-color: var(--olive); opacity: .85; }
-  .lrow .li-amt { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 19px; font-weight: 600; align-self: start; }
-  .lrow .li-amt small { display: block; font-size: 11px; color: var(--ink-3); font-weight: 400; margin-top: 3px; letter-spacing: .04em; }
+  .lrow .li-amt { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 16px; font-weight: 600; }
+  .lrow .li-amt small { display: block; font-size: 9.5px; color: var(--ink-3); font-weight: 400; margin-top: 2px; letter-spacing: .02em; }
 
-  /* ============ RECEIPT (sticky) ============ */
   .receipt {
     position: sticky; top: 0; z-index: 50;
     background: var(--ink); color: var(--paper);
-    margin-top: 26px;
     border-radius: 3px;
     box-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
-    padding: 13px 20px;
-    display: flex; align-items: center; gap: 10px 26px; flex-wrap: wrap;
-    transition: opacity .25s ease, transform .25s ease;
+    padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px 20px; flex-wrap: wrap;
+    margin-bottom: 12px;
   }
   :root[data-theme="dark"] .receipt { outline: 1px solid var(--rule-strong); }
   @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .receipt { outline: 1px solid var(--rule-strong); } }
-  .receipt .r-label { font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .65; }
-  .receipt .r-total { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 27px; font-weight: 700; line-height: 1; }
-  .receipt .r-stats { font-size: 13.5px; opacity: .8; font-style: italic; flex: 1; min-width: 200px; }
+  .receipt .r-label { font-family: var(--font-ui); font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; opacity: .65; }
+  .receipt .r-total { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 23px; font-weight: 700; line-height: 1; }
+  .receipt .r-stats { font-size: 12.5px; opacity: .8; font-style: italic; flex: 1; min-width: 170px; }
   .receipt .r-stats .mono { font-style: normal; }
   .receipt button {
-    font-family: var(--font-ui); font-size: 11px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase;
-    background: transparent; color: var(--paper); border: 1px solid rgba(255,255,255,.35); border-radius: 2px;
-    padding: 6px 12px; cursor: pointer;
+    font-family: var(--font-ui); font-size: 10px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase;
+    background: transparent; color: inherit; border: 1px solid rgba(128,128,128,.5); border-radius: 2px;
+    padding: 5px 10px; cursor: pointer;
   }
-  :root[data-theme="light"] .receipt button { border-color: rgba(242,243,236,.35); }
   .receipt button:hover { border-color: currentColor; }
-  .receipt.empty { opacity: .93; }
   .receipt .r-total.zero { opacity: .5; }
 
   /* ============ CHIPS ============ */
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
   .chip {
-    font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; letter-spacing: .02em;
+    font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .02em;
     border: 1px solid var(--rule-strong); background: var(--paper-raised); color: var(--ink-2);
-    border-radius: 999px; padding: 7px 14px; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px;
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 7px;
     transition: all .15s ease;
   }
-  .chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--dot, var(--ink-3)); }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot, var(--ink-3)); }
   .chip:hover { border-color: var(--ink-2); color: var(--ink); }
   .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
+  /* ============ ASK THE LEDGER ============ */
+  .askbox {
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--gold);
+    background: var(--paper-raised); border-radius: 3px; box-shadow: var(--shadow);
+    padding: 14px 16px 12px; margin-bottom: 16px;
+  }
+  .ask-label { font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+  .ask-row { display: flex; gap: 8px; }
+  #askInput {
+    flex: 1; min-width: 0;
+    font-family: var(--font-display); font-size: 16px; font-style: italic;
+    color: var(--ink); background: var(--paper); border: 1px solid var(--rule-strong); border-radius: 3px;
+    padding: 9px 12px;
+  }
+  #askInput::placeholder { color: var(--ink-3); }
+  #askBtn {
+    font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--accent); color: #fff; border: 0; border-radius: 3px; padding: 9px 16px; cursor: pointer;
+  }
+  :root[data-theme="dark"] #askBtn { color: #0E120C; }
+  @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) #askBtn { color: #0E120C; } }
+  #askBtn:hover { background: var(--accent-deep); }
+  .ask-suggest { margin-top: 9px; font-family: var(--font-ui); font-size: 11.5px; color: var(--ink-3); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .ask-suggest button {
+    font-family: var(--font-ui); font-size: 11px; color: var(--ink-2);
+    background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: 999px;
+    padding: 3px 9px; cursor: pointer;
+  }
+  .ask-suggest button:hover { border-color: var(--ink-3); color: var(--ink); }
+
   /* ============ TRADE-OFF CARDS ============ */
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 13px; }
   .card {
     border: 1px solid var(--rule-strong); border-radius: 3px; background: var(--paper-raised);
-    padding: 18px 18px 16px; box-shadow: var(--shadow);
-    display: flex; flex-direction: column; gap: 10px;
+    padding: 16px 16px 14px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 9px;
     position: relative; overflow: hidden;
     transition: opacity .25s ease, transform .25s ease;
   }
   .card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--cat); opacity: .9; }
-  .card .cat-line { display: flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
-  .card .cat-line .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cat); }
+  .card .cat-line { display: flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: 9.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); }
+  .card .cat-line .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cat); flex: none; }
   .card .big {
     font-family: var(--font-mono); font-variant-numeric: tabular-nums;
-    font-size: clamp(27px, 3vw, 33px); font-weight: 700; letter-spacing: -.02em; line-height: 1;
+    font-size: clamp(25px, 2.6vw, 30px); font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
   }
-  .card .label { font-size: 16.5px; line-height: 1.35; text-wrap: balance; min-height: 2.6em; }
-  .card .dots { display: flex; flex-wrap: wrap; gap: 3px; padding: 4px 0 2px; min-height: 24px; align-content: flex-start; }
+  .card .label { font-size: 15.5px; line-height: 1.35; text-wrap: balance; min-height: 2.6em; }
+  .card .dots { display: flex; flex-wrap: wrap; gap: 3px; padding: 3px 0 1px; min-height: 20px; align-content: flex-start; }
   .card .dots i {
     width: 7px; height: 7px; border-radius: 50%; background: var(--cat); display: block;
     opacity: 0; transform: scale(.3);
@@ -305,47 +312,57 @@
     animation-delay: var(--d, 0s);
   }
   @keyframes dotIn { to { opacity: .85; transform: scale(1); } }
-  .card .dots-cap, .card .src { font-family: var(--font-ui); font-size: 11.5px; color: var(--ink-3); }
-  .card .src { border-top: 1px solid var(--rule); padding-top: 9px; margin-top: auto; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .card .dots-cap, .card .src { font-family: var(--font-ui); font-size: 11px; color: var(--ink-3); }
+  .card .src { border-top: 1px solid var(--rule); padding-top: 8px; margin-top: auto; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
   .card.duration .big { color: var(--accent-deep); }
-  .card .dur-track { height: 8px; border-radius: 99px; background: var(--paper-sunken); border: 1px solid var(--rule); overflow: hidden; margin: 6px 0 2px; }
+  .card .dur-track { height: 8px; border-radius: 99px; background: var(--paper-sunken); border: 1px solid var(--rule); overflow: hidden; margin: 5px 0 1px; }
   .card .dur-fill { height: 100%; background: var(--cat); border-radius: 99px; width: 0%; transition: width .8s cubic-bezier(.2,.7,.2,1); }
   .card.hidden { display: none; }
-  .empty-note { color: var(--ink-3); font-style: italic; padding: 26px 4px; border: 1px dashed var(--rule-strong); border-radius: 3px; text-align: center; display: none; }
+  .card.ask { border-left: 3px solid var(--gold); }
+  .card.ask .q-echo { font-style: italic; color: var(--ink-2); font-size: 13px; }
+  .empty-note { color: var(--ink-3); font-style: italic; padding: 24px 4px; border: 1px dashed var(--rule-strong); border-radius: 3px; text-align: center; display: none; }
 
-  /* ============ SCALE BARS ============ */
-  .bars { margin-top: 26px; display: flex; flex-direction: column; gap: 15px; }
-  .bar-row .bar-top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 5px; }
+  /* ============ SCALE — dot blocks ============ */
+  .scale-legend { font-family: var(--font-ui); font-size: 12px; color: var(--ink-3); margin: 18px 0 14px; display: flex; align-items: center; gap: 7px; }
+  .scale-legend i { width: 9px; height: 9px; border-radius: 50%; background: var(--olive); opacity: .55; display: inline-block; }
+  .bars { display: flex; flex-direction: column; gap: 17px; }
+  .bar-row .bar-top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 6px; }
   .bar-row .bar-name { font-size: 15.5px; }
   .bar-row .bar-name small { color: var(--ink-3); font-size: 13px; font-style: italic; }
   .bar-row .bar-val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 14px; color: var(--ink-2); white-space: nowrap; }
-  .bar-track { height: 13px; background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
-  .bar-fill { height: 100%; width: 0%; border-radius: 1px; background: var(--olive); opacity: .55; transition: width .9s cubic-bezier(.2,.7,.2,1); }
-  .bar-row.you .bar-fill { background: var(--accent); opacity: 1; }
+  .dotstrip { display: flex; flex-wrap: wrap; gap: 3px; }
+  .dotstrip i {
+    width: 9px; height: 9px; border-radius: 50%; background: var(--olive); opacity: .55; display: block;
+    transform: scale(.3); animation: stripIn .25s ease forwards; animation-delay: var(--d, 0s);
+  }
+  @keyframes stripIn { to { transform: scale(1); } }
+  .bar-row.you .dotstrip i { background: var(--accent); opacity: 1; }
+  .bar-row .dotstrip i.faint { opacity: .25; }
   .bar-row.you .bar-name { font-weight: 700; }
   .bar-row.you .bar-val { color: var(--accent-deep); font-weight: 700; }
   .kicker {
-    margin: 26px 0 0; padding: 16px 20px; border-left: 3px solid var(--gold);
+    margin: 26px 0 0; padding: 15px 20px; border-left: 3px solid var(--gold);
     background: var(--paper-raised); border-radius: 0 3px 3px 0;
-    font-size: 17.5px; font-style: italic; color: var(--ink-2); max-width: 62ch;
+    font-size: 16.5px; font-style: italic; color: var(--ink-2); max-width: 62ch;
   }
   .kicker strong { color: var(--ink); font-style: normal; }
 
   /* ============ JOBS ============ */
-  .jobs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 34px; margin-top: 26px; align-items: start; }
+  .jobs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 34px; margin-top: 22px; align-items: start; }
   .jbars { display: flex; flex-direction: column; gap: 13px; }
   .jrow .bar-top { margin-bottom: 4px; }
-  .jrow .bar-fill { background: var(--accent); opacity: .9; }
+  .bar-track { height: 13px; background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; width: 0%; border-radius: 1px; background: var(--accent); opacity: .9; transition: width .9s cubic-bezier(.2,.7,.2,1); }
   .jrow.mil .bar-fill { background: var(--olive); opacity: .75; }
   .jrow .bar-val { font-weight: 600; color: var(--ink); }
-  .jobs-note { font-size: 16.5px; color: var(--ink-2); max-width: 44ch; }
-  .jobs-note .headline { font-size: clamp(22px, 2.6vw, 27px); line-height: 1.3; color: var(--ink); margin-bottom: 12px; text-wrap: balance; }
+  .jobs-note { font-size: 16px; color: var(--ink-2); max-width: 44ch; }
+  .jobs-note .headline { font-size: clamp(20px, 2.4vw, 25px); line-height: 1.3; color: var(--ink); margin-bottom: 12px; text-wrap: balance; }
   .jobs-note .headline .mono { color: var(--accent-deep); font-weight: 700; }
   .jobs-note .src-line { font-family: var(--font-ui); font-size: 11.5px; color: var(--ink-3); margin-top: 14px; }
 
   /* ============ METHOD ============ */
   .method { max-width: 74ch; }
-  .method ol { padding-left: 22px; display: flex; flex-direction: column; gap: 10px; color: var(--ink-2); font-size: 15.5px; }
+  .method ol { padding-left: 22px; display: flex; flex-direction: column; gap: 10px; color: var(--ink-2); font-size: 15px; }
   .method li strong { color: var(--ink); }
   details { margin-top: 20px; border: 1px solid var(--rule-strong); border-radius: 3px; background: var(--paper-raised); }
   summary { cursor: pointer; padding: 12px 16px; font-family: var(--font-ui); font-size: 12px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
@@ -354,10 +371,10 @@
   .srcs a { text-decoration-thickness: 1px; text-underline-offset: 2px; }
 
   /* ============ FOOTER ============ */
-  footer { margin-top: 84px; border-top: 1px solid var(--rule-strong); box-shadow: inset 0 3px 0 -2px var(--rule-strong); padding: 44px 0 60px; }
-  .epigraph { font-size: clamp(20px, 3vw, 27px); font-style: italic; max-width: 30ch; line-height: 1.4; text-wrap: balance; }
+  footer { margin-top: 72px; border-top: 1px solid var(--rule-strong); box-shadow: inset 0 3px 0 -2px var(--rule-strong); padding: 40px 0 56px; }
+  .epigraph { font-size: clamp(19px, 2.6vw, 25px); font-style: italic; max-width: 32ch; line-height: 1.4; text-wrap: balance; }
   .epigraph strong { color: var(--accent); font-style: normal; }
-  .foot-meta { margin-top: 22px; font-family: var(--font-ui); font-size: 12px; color: var(--ink-3); display: flex; gap: 8px 22px; flex-wrap: wrap; }
+  .foot-meta { margin-top: 20px; font-family: var(--font-ui); font-size: 12px; color: var(--ink-3); display: flex; gap: 8px 22px; flex-wrap: wrap; }
 
   /* ============ MOTION / REVEAL ============ */
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
@@ -365,88 +382,107 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
-    .card .dots i { animation: none; opacity: .85; transform: none; }
+    .card .dots i, .dotstrip i { animation: none; opacity: .85; transform: none; }
+    .bar-row.you .dotstrip i { opacity: 1; }
     .bar-fill, .dur-fill { transition: none; }
   }
-
-  /* debug/QA: ?jump=<section-id> disables motion and lands instantly */
+  /* debug/QA: ?jump / ?solo disable motion and land instantly */
   .no-anim, .no-anim * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-  .no-anim .card .dots i { opacity: .85; transform: none; }
+  .no-anim .card .dots i, .no-anim .dotstrip i { opacity: .85; transform: none; }
+  .no-anim .bar-row.you .dotstrip i { opacity: 1; }
   .no-anim .reveal { opacity: 1; transform: none; }
 
   /* ============ RESPONSIVE ============ */
-  @media (max-width: 700px) {
-    section { padding: 54px 0 6px; }
-    .ledger-head { display: none; }
-    .lrow { grid-template-columns: 34px 1fr; grid-template-rows: auto auto; padding: 13px 14px 13px 10px; }
-    .lrow .li-amt { grid-column: 2; text-align: left; margin-top: 6px; }
-    .lrow .li-amt small { display: inline; margin-left: 8px; }
-    .receipt { gap: 6px 16px; padding: 11px 14px; }
-    .receipt .r-total { font-size: 22px; }
+  @media (min-width: 1150px) {
+    .duo { grid-template-columns: 470px 1fr; gap: 40px; }
+    .col-war { position: sticky; top: 14px; align-self: start; }
+    .col-war .ledger { max-height: calc(100vh - 305px); overflow-y: auto; overscroll-behavior: contain; }
+  }
+  @media (max-width: 760px) {
+    section { padding: 46px 0 6px; }
+    .mast { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+    .lrow .li-amt { text-align: right; }
+    .lrow .li-amt small { display: none; }
+    .receipt { gap: 6px 14px; padding: 9px 12px; }
+    .receipt .r-total { font-size: 20px; }
     .receipt .r-stats { display: none; }
     .card .label { min-height: 0; }
   }
 </style>
 
 <main>
-  <!-- ================= HERO ================= -->
-  <header class="hero wrap">
-    <p class="eyebrow"><span>A ledger for the public</span><span class="no">·</span><span>United States · 2022–2026</span></p>
-    <h1>Ask what your country <em>could</em> do for you.</h1>
-    <p class="lede">Sixty-five years ago, Kennedy asked the opposite. This page runs his line in reverse: <strong>take any item from America's recent war budget</strong> — a missile shield, a carrier, one Patriot battery — <strong>and price it in the things a country does for its people.</strong> Every figure is real, enacted or officially projected, and sourced below.</p>
-    <div class="ticker-card">
+  <!-- ================= MASTHEAD ================= -->
+  <header class="hero wrap" id="top">
+    <div class="mast">
+      <div>
+        <p class="eyebrow"><span>A ledger for the public</span><span class="no">·</span><span>United States · 2022–2026</span></p>
+        <h1>Ask what your country <em>could</em> do for you.</h1>
+        <p class="lede">Kennedy asked the opposite. This site prices items from <strong>America's recent war budget</strong> in the things a country does for its people — every figure real, enacted or officially projected, sourced below.</p>
+      </div>
       <div>
         <div class="ticker-label">U.S. defense spending since you opened this page</div>
         <div id="ticker" aria-live="off">$0</div>
+        <p class="ticker-note">at the enacted FY 2025 rate — <span class="mono">$895.2B/yr · $28,389 every second</span></p>
       </div>
-      <p class="ticker-note">at the enacted FY 2025 rate —<br><span class="mono">$895.2 billion a year · $28,389 every second</span></p>
     </div>
-    <div class="plate-marks" aria-hidden="true">✶ ✶ ✶</div>
   </header>
 
-  <!-- ================= STEP 1 · LEDGER ================= -->
-  <section id="ledger" class="wrap reveal">
-    <p class="eyebrow"><span class="no">STEP 01</span><span>The war ledger</span></p>
-    <div class="sec-head">
-      <h2>Pick a line item.</h2>
-      <p class="sub">Thirteen real appropriations and program costs from recent legislation and federal estimates. Select one or several — the receipt keeps a running total.</p>
-    </div>
-    <div class="ledger" id="ledgerRows" role="group" aria-label="Defense line items"></div>
-    <div class="receipt" id="receipt">
-      <div>
-        <div class="r-label">Your reallocation</div>
-        <div class="r-total mono" id="potTotal">$0</div>
+  <!-- ================= WORKBENCH ================= -->
+  <section id="workbench" class="wrap reveal">
+    <div class="duo">
+      <div class="col-war">
+        <div class="col-head">
+          <p class="eyebrow"><span class="no">STEP 01</span><span>The war ledger</span></p>
+          <h2>Pick line items.</h2>
+          <p>Real appropriations from recent legislation. The receipt keeps a running total.</p>
+        </div>
+        <div class="chips chips-war" id="warChips" role="group" aria-label="Filter defense items by sector"></div>
+        <div class="receipt" id="receipt">
+          <div>
+            <div class="r-label">Your reallocation</div>
+            <div class="r-total mono" id="potTotal">$0</div>
+          </div>
+          <div class="r-stats" id="potStats"></div>
+          <button id="clearBtn" type="button">Clear</button>
+        </div>
+        <div class="ledger" id="ledgerRows" role="group" aria-label="Defense line items"></div>
       </div>
-      <div class="r-stats" id="potStats"></div>
-      <button id="clearBtn" type="button">Clear</button>
-    </div>
-  </section>
 
-  <!-- ================= STEP 2 · TRADE-OFFS ================= -->
-  <section id="tradeoffs" class="wrap reveal">
-    <p class="eyebrow"><span class="no">STEP 02</span><span>The people's ledger</span></p>
-    <div class="sec-head">
-      <h2>The same dollars, spent at home.</h2>
-      <p class="sub">Unit prices are national averages from federal data — each card names its source. Filter by the kind of policy you care about.</p>
+      <div class="col-people" id="tradeoffs">
+        <div class="col-head">
+          <p class="eyebrow"><span class="no">STEP 02</span><span>The people's ledger</span></p>
+          <h2>The same dollars, spent at home.</h2>
+          <p>National-average unit prices; each card names its source. Filter by policy, or ask for anything.</p>
+        </div>
+        <div class="askbox">
+          <label class="ask-label" for="askInput">Ask the ledger — price anything</label>
+          <div class="ask-row">
+            <input id="askInput" placeholder="how many diapers? years of rent? MRI scans?" autocomplete="off" enterkeyhint="search">
+            <button id="askBtn" type="button">Price it</button>
+          </div>
+          <div class="ask-suggest" id="askSuggest"><span>try:</span></div>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Filter by policy type"></div>
+        <div class="cards" id="cards"></div>
+        <p class="empty-note" id="emptyNote">Select a line item in the war ledger to price it here.</p>
+      </div>
     </div>
-    <div class="chips" id="chips" role="group" aria-label="Filter by policy type"></div>
-    <div class="cards" id="cards"></div>
-    <p class="empty-note" id="emptyNote">Select a line item in the ledger above to price it here.</p>
   </section>
 
   <!-- ================= SCALE ================= -->
-  <section id="scale" class="wrap reveal">
+  <section id="scale" class="wrap-tight reveal">
     <p class="eyebrow"><span>For perspective</span></p>
     <div class="sec-head">
       <h2 id="scaleTitle">How big is that, really?</h2>
-      <p class="sub">Your selection beside what the United States actually spends, per year, on the programs people call unaffordable.</p>
+      <p class="sub">Your selection beside what the United States actually spends, per year, on the programs people call unaffordable — drawn to the same scale.</p>
     </div>
+    <div class="scale-legend" id="scaleLegend"><i></i><span></span></div>
     <div class="bars" id="scaleBars"></div>
     <p class="kicker" id="scaleKicker"></p>
   </section>
 
   <!-- ================= JOBS ================= -->
-  <section id="jobs" class="wrap reveal">
+  <section id="jobs" class="wrap-tight reveal">
     <p class="eyebrow"><span>The employment dividend</span></p>
     <div class="sec-head">
       <h2>The same dollar buys more jobs elsewhere.</h2>
@@ -463,7 +499,7 @@
   </section>
 
   <!-- ================= METHOD ================= -->
-  <section id="method" class="wrap reveal">
+  <section id="method" class="wrap-tight reveal">
     <p class="eyebrow"><span>Fine print</span></p>
     <div class="sec-head"><h2>Method, honestly.</h2></div>
     <div class="method">
@@ -471,6 +507,7 @@
         <li><strong>Every figure is public.</strong> Defense items come from enacted legislation (FY25 NDAA, the 2025 reconciliation act, the April 2024 supplemental) and official estimates (CBO, GAO, CRS, the services). Program unit costs come from USDA, NEA, NIEER, the College Board, HHS, HUD, KFF, MACPAC, EPA and Census data. All figures are rounded.</li>
         <li><strong>Time spans differ, and are labeled.</strong> A carrier is a one-time purchase; the Pentagon topline is one year; the F-35 figure is a program lifetime. Each ledger row carries its span; each card states its own period ("for a year").</li>
         <li><strong>Unit costs are national averages.</strong> An affordable apartment averages ≈ $300,000 to develop nationally and can run 2–3× that in coastal metros. Local numbers will vary; the arithmetic is yours to rerun.</li>
+        <li><strong>"Ask the ledger" uses a built-in price book</strong> — ballpark national retail averages, rougher than the sourced cards. It answers instantly and never phones home.</li>
         <li><strong>Comparisons are illustrative.</strong> Federal budgeting is not a zero-sum checkbook, and cutting a program does not automatically fund another. But opportunity cost is real — CBO scores it, and so can you.</li>
         <li><strong>This page takes a side</strong> — the side of asking the question. The data does not care which side you take.</li>
       </ol>
@@ -496,7 +533,7 @@
 
   <!-- ================= FOOTER ================= -->
   <footer id="colophon">
-    <div class="wrap">
+    <div class="wrap-tight">
       <p class="epigraph">"Ask not what your country can do for you" — <strong>it can do quite a lot, actually.</strong></p>
       <div class="foot-meta">
         <span>Built from public data</span><span>·</span>
@@ -515,20 +552,29 @@ const HOUSEHOLDS = 131.4e6;      // Census 2023
 const DISTRICTS  = 435;
 const DEF_RATE_PER_SEC = 895.2 * B / 31536000;   // FY25 national-defense topline
 
+const MCATS = [
+  { id:'package', label:'Packages & toplines' },
+  { id:'missile', label:'Missile defense' },
+  { id:'air',     label:'Aircraft' },
+  { id:'sea',     label:'Ships & subs' },
+  { id:'nuclear', label:'Nuclear' },
+  { id:'aid',     label:'Foreign aid' },
+];
+
 const DEFENSE = [
-  { id:'obbba',   name:'Reconciliation defense package', note:'$25B Golden Dome down payment, $29B ships, $25B munitions', bill:'One Big Beautiful Bill Act', year:'2025', kind:'one-time', amt:150 },
-  { id:'golden',  name:'Golden Dome missile shield',     note:'projected total; CBO puts space interceptors alone at up to $542B', bill:'White House est.', year:'2025', kind:'projected', amt:175 },
-  { id:'ndaa',    name:'One year of the Pentagon',       note:'FY 2025 national-defense topline', bill:'FY25 NDAA', year:'2024', kind:'annual', amt:895.2 },
-  { id:'nuclear', name:'The nuclear arsenal, ten years', note:'operate and modernize the triad, 2025–2034', bill:'CBO projection', year:'2025', kind:'decade', amt:946 },
-  { id:'f35',     name:'F-35 program, lifetime',         note:'acquisition + sustainment through 2088', bill:'GAO estimate', year:'2024', kind:'lifetime', amt:2000 },
-  { id:'ukraine', name:'Ukraine war aid, total',         note:'five supplemental bills since Feb 2022', bill:'CRS / CRFB', year:'2022–24', kind:'multi-year', amt:175 },
-  { id:'sentinel',name:'Sentinel ICBM program',          note:'running 81% over its original budget', bill:'USAF · Nunn-McCurdy', year:'2024', kind:'program', amt:141 },
-  { id:'israel',  name:'Israel & Red Sea operations',    note:'2024 emergency supplemental', bill:'Apr 2024 supplemental', year:'2024', kind:'one-time', amt:26.4 },
-  { id:'carrier', name:'One Ford-class aircraft carrier',note:'USS Gerald R. Ford, CVN-78', bill:'U.S. Navy', year:'comm. 2017', kind:'per ship', amt:13.3 },
-  { id:'sub',     name:'One Virginia-class submarine',   note:'Block V attack boat', bill:'U.S. Navy', year:'current', kind:'per boat', amt:4.3 },
-  { id:'patriot', name:'One Patriot battery, loaded',    note:'$400M hardware + $690M interceptors (≈ $4M a shot)', bill:'CRS / U.S. Army', year:'current', kind:'per battery', amt:1.1 },
-  { id:'b21',     name:'One B-21 Raider bomber',         note:'average procurement unit price', bill:'U.S. Air Force', year:'current', kind:'per aircraft', amt:0.7 },
-  { id:'f35a',    name:'One F-35A fighter',              note:'flyaway cost, current production lot', bill:'DoD / Lockheed', year:'current', kind:'per jet', amt:0.0825 },
+  { id:'obbba',   mcat:'package', name:'Reconciliation defense package', note:'$25B Golden Dome down payment, $29B ships, $25B munitions', bill:'One Big Beautiful Bill Act', year:'2025', kind:'one-time', amt:150 },
+  { id:'golden',  mcat:'missile', name:'Golden Dome missile shield',     note:'projected total; CBO puts space interceptors alone at up to $542B', bill:'White House est.', year:'2025', kind:'projected', amt:175 },
+  { id:'ndaa',    mcat:'package', name:'One year of the Pentagon',       note:'FY 2025 national-defense topline', bill:'FY25 NDAA', year:'2024', kind:'annual', amt:895.2 },
+  { id:'nuclear', mcat:'nuclear', name:'The nuclear arsenal, ten years', note:'operate and modernize the triad, 2025–2034', bill:'CBO projection', year:'2025', kind:'decade', amt:946 },
+  { id:'f35',     mcat:'air',     name:'F-35 program, lifetime',         note:'acquisition + sustainment through 2088', bill:'GAO estimate', year:'2024', kind:'lifetime', amt:2000 },
+  { id:'ukraine', mcat:'aid',     name:'Ukraine war aid, total',         note:'five supplemental bills since Feb 2022', bill:'CRS / CRFB', year:'2022–24', kind:'multi-year', amt:175 },
+  { id:'sentinel',mcat:'nuclear', name:'Sentinel ICBM program',          note:'running 81% over its original budget', bill:'USAF · Nunn-McCurdy', year:'2024', kind:'program', amt:141 },
+  { id:'israel',  mcat:'aid',     name:'Israel & Red Sea operations',    note:'2024 emergency supplemental', bill:'Apr 2024 supplemental', year:'2024', kind:'one-time', amt:26.4 },
+  { id:'carrier', mcat:'sea',     name:'One Ford-class aircraft carrier',note:'USS Gerald R. Ford, CVN-78', bill:'U.S. Navy', year:'comm. 2017', kind:'per ship', amt:13.3 },
+  { id:'sub',     mcat:'sea',     name:'One Virginia-class submarine',   note:'Block V attack boat', bill:'U.S. Navy', year:'current', kind:'per boat', amt:4.3 },
+  { id:'patriot', mcat:'missile', name:'One Patriot battery, loaded',    note:'$400M hardware + $690M interceptors (≈ $4M a shot)', bill:'CRS / U.S. Army', year:'current', kind:'per battery', amt:1.1 },
+  { id:'b21',     mcat:'air',     name:'One B-21 Raider bomber',         note:'average procurement unit price', bill:'U.S. Air Force', year:'current', kind:'per aircraft', amt:0.7 },
+  { id:'f35a',    mcat:'air',     name:'One F-35A fighter',              note:'flyaway cost, current production lot', bill:'DoD / Lockheed', year:'current', kind:'per jet', amt:0.0825 },
 ];
 
 const CATS = [
@@ -571,7 +617,7 @@ const PROGRAMS = [
   { cat:'house', annual:15.4, label:'supportive housing for every American counted homeless',      src:'771,480 people × $20k · HUD 2024' },
 ];
 
-/* perspective bars: annual budgets */
+/* perspective rows: annual budgets */
 const ANNUALS = [
   { label:'SNAP — food aid, 42M people', amt:99.8 },
   { label:'NIH — all U.S. medical research', amt:47.1 },
@@ -592,9 +638,100 @@ const JOBS = [
   { label:'Education', x:2.72 },
 ];
 
+/* ===== ask-the-ledger price book — ballpark U.S. averages, 2024–26 ===== */
+const CATALOG = [
+  { q:['diaper'], unit:900, noun:'babies kept in diapers for a year', note:'≈ $900/yr per baby' },
+  { q:['formula'], unit:1800, noun:'babies on formula for a year', note:'≈ $150/mo' },
+  { q:['groceries','grocery'], unit:12000, noun:"families' groceries for a year", note:'≈ $1,000/mo, family of four' },
+  { q:['coffee','latte'], unit:1825, noun:'daily-latte habits funded for a year', note:'$5 a day' },
+  { q:['big mac','burger'], unit:5.69, noun:'Big Macs', note:'$5.69 each' },
+  { q:['dozen eggs','eggs'], unit:3.5, noun:'dozens of eggs', note:'$3.50/dozen' },
+  { q:['gallon of milk','milk'], unit:4, noun:'gallons of milk', note:'$4/gallon' },
+  { q:['tank of gas','tank'], unit:45, noun:'tanks of gas', note:'≈ $45 to fill up' },
+  { q:['gasoline','gas'], unit:3.2, noun:'gallons of gas', note:'$3.20/gallon' },
+  { q:['insulin'], unit:1000, noun:'years of insulin, uninsured', note:'≈ $1,000/yr without coverage' },
+  { q:['epipen'], unit:650, noun:'EpiPen two-packs', note:'list price' },
+  { q:['mri'], unit:1325, noun:'MRI scans', note:'national median' },
+  { q:['emergency room','er visit'], unit:2600, noun:'ER visits', note:'avg billed' },
+  { q:['ambulance ride'], unit:1300, noun:'ambulance rides', note:'avg billed' },
+  { q:['ambulance'], unit:300000, noun:'ambulances bought', note:'≈ $300k each' },
+  { q:['therapy'], unit:150, noun:'therapy sessions', note:'$150/session' },
+  { q:['dentist','dental'], unit:200, noun:'dental cleanings', note:'uninsured avg' },
+  { q:['glasses'], unit:200, noun:'pairs of glasses', note:'frames + lenses' },
+  { q:['hearing aid'], unit:4600, noun:'pairs of hearing aids', note:'avg pair' },
+  { q:['giving birth','birth','delivery'], unit:18900, noun:'hospital births covered', note:'avg total billed' },
+  { q:['knee replacement'], unit:30000, noun:'knee replacements', note:'avg billed' },
+  { q:['daycare','day care'], unit:13000, noun:'years of full-time child care', note:'Child Care Aware avg' },
+  { q:['rent'], unit:19200, noun:'years of median rent', note:'$1,600/mo' },
+  { q:['median house','house','home'], unit:420000, noun:'median American homes', note:'existing-home median' },
+  { q:['apartment'], unit:300000, noun:'affordable apartments built', note:'new LIHTC unit' },
+  { q:['iphone'], unit:999, noun:'iPhones', note:'$999 list' },
+  { q:['macbook','laptop'], unit:1000, noun:'laptops', note:'≈ $1,000' },
+  { q:['playstation','ps5'], unit:499, noun:'PlayStation 5s', note:'$499 list' },
+  { q:['nintendo','switch'], unit:450, noun:'Nintendo Switch 2s', note:'$450 list' },
+  { q:['netflix'], unit:186, noun:'years of Netflix', note:'standard plan' },
+  { q:['spotify'], unit:144, noun:'years of Spotify', note:'$11.99/mo' },
+  { q:['gym'], unit:600, noun:'years of gym membership', note:'$50/mo' },
+  { q:['sneaker','shoes'], unit:120, noun:'pairs of sneakers', note:'≈ $120' },
+  { q:['bicycle','bike'], unit:500, noun:'bicycles', note:'entry road/commuter' },
+  { q:['e-bike','ebike'], unit:1500, noun:'e-bikes', note:'≈ $1,500' },
+  { q:['used car'], unit:27000, noun:'used cars', note:'avg listing' },
+  { q:['tesla'], unit:42000, noun:'Tesla Model 3s', note:'base RWD' },
+  { q:['new car','car'], unit:48000, noun:'new cars', note:'avg transaction' },
+  { q:['school bus'], unit:120000, noun:'diesel school buses', note:'≈ $120k' },
+  { q:['fire truck','firetruck'], unit:750000, noun:'fire trucks', note:'pumper avg' },
+  { q:['teacher'], unit:70000, noun:'teachers paid for a year', note:'NEA avg salary' },
+  { q:['nurse'], unit:95000, noun:"nurses' salaries for a year", note:'RN avg' },
+  { q:['firefighter'], unit:60000, noun:"firefighters' salaries for a year", note:'avg' },
+  { q:['police','cop'], unit:72000, noun:"police officers' salaries for a year", note:'avg' },
+  { q:['social worker'], unit:60000, noun:"social workers' salaries for a year", note:'avg' },
+  { q:['librarian'], unit:64000, noun:"librarians' salaries for a year", note:'avg' },
+  { q:['minimum wage'], unit:15080, noun:'full-time federal-minimum-wage salaries', note:'$7.25 × 2,080 hrs' },
+  { q:['median salary','median income','salary'], unit:60000, noun:'median U.S. salaries paid for a year', note:'≈ $60k' },
+  { q:['private college'], unit:58000, noun:'years of private college, all-in', note:'tuition + room & board' },
+  { q:['student debt','student loan'], unit:38000, noun:'average student-debt balances wiped out', note:'≈ $38k avg' },
+  { q:['textbook'], unit:1200, noun:'years of college textbooks', note:'≈ $1,200/yr' },
+  { q:['college','university','tuition'], unit:27000, noun:'years of public college, all-in', note:'in-state, with room & board' },
+  { q:['wedding'], unit:33000, noun:'weddings', note:'national avg' },
+  { q:['funeral'], unit:8300, noun:'funerals', note:'median with burial' },
+  { q:['dog food','dog'], unit:500, noun:'years of dog food', note:'≈ $500/yr' },
+  { q:['vet visit','vet'], unit:150, noun:'vet visits', note:'routine exam' },
+  { q:['haircut'], unit:35, noun:'haircuts', note:'≈ $35' },
+  { q:['disney'], unit:150, noun:'Disney World tickets', note:'1-day base' },
+  { q:['international flight'], unit:1200, noun:'international round-trip flights', note:'economy avg' },
+  { q:['flight','plane ticket'], unit:350, noun:'domestic round-trip flights', note:'economy avg' },
+  { q:['hotel'], unit:160, noun:'hotel nights', note:'U.S. avg rate' },
+  { q:['thanksgiving'], unit:64, noun:'Thanksgiving dinners for ten', note:'AFBF basket' },
+  { q:['christmas tree'], unit:80, noun:'Christmas trees', note:'real-tree avg' },
+  { q:['heat pump'], unit:15000, noun:'heat pumps installed', note:'whole-home avg' },
+  { q:['water heater'], unit:1800, noun:'water heaters replaced', note:'tank, installed' },
+  { q:['roof'], unit:11500, noun:'roof replacements', note:'asphalt avg' },
+  { q:['ev charger'], unit:1200, noun:'home EV chargers installed', note:'level 2' },
+  { q:['tree'], unit:150, noun:'city trees planted', note:'≈ $150/tree' },
+  { q:['park bench'], unit:2000, noun:'park benches', note:'installed' },
+  { q:['playground'], unit:150000, noun:'playgrounds built', note:'≈ $150k' },
+  { q:['library'], unit:10000000, noun:'branch libraries built', note:'≈ $10M' },
+  { q:['elementary school','school built'], unit:30000000, noun:'elementary schools built', note:'≈ $30M' },
+  { q:['hospital'], unit:400000000, noun:'community hospitals built', note:'≈ $400M' },
+  { q:['high-speed rail','high speed rail','rail'], unit:80000000, noun:'miles of high-speed rail', note:'≈ $80M/mile' },
+  { q:['mile of highway','highway'], unit:10000000, noun:'miles of highway built', note:'≈ $10M/mile' },
+  { q:['bridge'], unit:5000000, noun:'bridge repairs', note:'≈ $5M avg' },
+  { q:['health insurance'], unit:8900, noun:'years of health-insurance premiums', note:'single, total premium' },
+  { q:['car insurance'], unit:2300, noun:'years of full-coverage car insurance', note:'national avg' },
+  { q:['internet','broadband','wifi'], unit:720, noun:'years of home internet', note:'$60/mo' },
+  { q:['electric bill','electricity'], unit:1800, noun:'years of household electricity', note:'$150/mo' },
+  { q:['school lunch','lunch'], unit:800, noun:'kids on free school lunch for a year', note:'$4.45 × 180 days' },
+  { q:['food stamps','snap'], unit:2250, noun:'people fed by SNAP for a year', note:'USDA avg benefit' },
+  { q:['solar'], unit:20000, noun:'homes given rooftop solar', note:'before tax credit' },
+  { q:['pre-k','prek','preschool'], unit:10000, noun:'children in high-quality pre-K for a year', note:'NIEER benchmark' },
+];
+const ASK_SUGGESTIONS = ['diapers', 'a year of rent', 'Big Macs', 'MRI scans', "nurses' salaries", 'median houses'];
+
 /* ============================ STATE ============================ */
 const selected = new Set(['obbba']);
 let activeCat = 'all';
+let activeMcat = 'all';
+let lastAsk = null;
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const $ = (s, el=document) => el.querySelector(s);
@@ -608,9 +745,15 @@ const fmtB = v => {
   return '$' + Math.round(v*1000) + 'M';
 };
 const fmtInt = v => Math.round(v).toLocaleString('en-US');
-/* counts derive from estimated unit costs — show 3 significant figures, no false precision */
+/* counts derive from estimated unit costs — 3 significant figures, no false precision */
 const sig3 = v => { if (v < 1000) return Math.round(v); const m = Math.pow(10, Math.floor(Math.log10(v)) - 2); return Math.round(v / m) * m; };
-const fmtCount = v => sig3(v).toLocaleString('en-US');
+const fmtCount = v => {
+  const s = sig3(v);
+  if (s >= 1e12) return (s/1e12).toPrecision(3).replace(/\.?0+$/,'') + ' trillion';
+  if (s >= 1e9)  return (s/1e9).toPrecision(3).replace(/\.?0+$/,'') + ' billion';
+  return s.toLocaleString('en-US');
+};
+const fmtUnitPrice = v => v < 100 ? ('$' + (Number.isInteger(v) ? v : v.toFixed(2))) : '$' + fmtInt(v);
 const fmtDur = years => {
   if (years <= 0) return '—';
   const days = years * 365.25;
@@ -639,13 +782,34 @@ function countUp(el, to, fmt) {
   requestAnimationFrame(step);
 }
 
-/* ============================ LEDGER ============================ */
+/* ============================ WAR LEDGER ============================ */
+function buildWarChips() {
+  const host = $('#warChips');
+  const mk = (id, label) => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button';
+    b.setAttribute('aria-pressed', id === activeMcat);
+    b.dataset.mcat = id;
+    b.textContent = label;
+    b.addEventListener('click', () => {
+      activeMcat = id;
+      host.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.mcat === id));
+      document.querySelectorAll('#ledgerRows .lrow').forEach(r =>
+        r.classList.toggle('hidden', id !== 'all' && r.dataset.mcat !== id));
+    });
+    host.appendChild(b);
+  };
+  mk('all', 'All');
+  MCATS.forEach(c => mk(c.id, c.label));
+}
+
 function buildLedger() {
   const host = $('#ledgerRows');
-  host.innerHTML = '<div class="ledger-head"><span></span><span>Line item</span><span class="amt">Amount</span></div>';
+  host.innerHTML = '';
   DEFENSE.forEach(d => {
     const row = document.createElement('label');
     row.className = 'lrow' + (selected.has(d.id) ? ' on' : '');
+    row.dataset.mcat = d.mcat;
     row.innerHTML = `
       <input type="checkbox" ${selected.has(d.id) ? 'checked' : ''} aria-label="${d.name}, ${fmtB(d.amt)}">
       <span>
@@ -657,10 +821,8 @@ function buildLedger() {
           <span class="li-tag kind">${d.kind}</span>
         </span>
       </span>
-      <span class="li-amt">${fmtB(d.amt)}<small>${d.amt >= 1 ? '$' + fmtInt(d.amt) + ',000,000,000'.slice(0) : ''}</small></span>`;
-    // full-digit subline
-    const small = row.querySelector('.li-amt small');
-    small.textContent = '$' + (d.amt * B).toLocaleString('en-US');
+      <span class="li-amt">${fmtB(d.amt)}<small></small></span>`;
+    row.querySelector('.li-amt small').textContent = '$' + (d.amt * B).toLocaleString('en-US');
     row.querySelector('input').addEventListener('change', e => {
       e.target.checked ? selected.add(d.id) : selected.delete(d.id);
       row.classList.toggle('on', e.target.checked);
@@ -676,13 +838,12 @@ function renderReceipt() {
   const totalEl = $('#potTotal');
   countUp(totalEl, p, v => fmtB(v));
   totalEl.classList.toggle('zero', p === 0);
-  $('#receipt').classList.toggle('empty', p === 0);
   $('#potStats').innerHTML = p === 0
-    ? 'Nothing selected — check a line item above.'
-    : `that's <span class="mono">$${fmtInt(p*B/HOUSEHOLDS)}</span> per U.S. household &nbsp;·&nbsp; <span class="mono">${fmtB(p/DISTRICTS)}</span> per congressional district`;
+    ? 'Nothing selected — check a line item below.'
+    : `<span class="mono">$${fmtInt(p*B/HOUSEHOLDS)}</span> per household · <span class="mono">${fmtB(p/DISTRICTS)}</span> per district`;
 }
 
-/* ============================ CHIPS ============================ */
+/* ============================ PEOPLE CHIPS ============================ */
 function buildChips() {
   const host = $('#chips');
   const mk = (id, label, color) => {
@@ -694,7 +855,10 @@ function buildChips() {
     b.addEventListener('click', () => {
       activeCat = id;
       host.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.cat === id));
-      document.querySelectorAll('#cards .card').forEach(c => c.classList.toggle('hidden', id !== 'all' && c.dataset.cat !== id));
+      document.querySelectorAll('#cards .card').forEach(c => {
+        if (c.classList.contains('ask')) return;   // the asked card always shows
+        c.classList.toggle('hidden', id !== 'all' && c.dataset.cat !== id);
+      });
     });
     host.appendChild(b);
   };
@@ -703,7 +867,7 @@ function buildChips() {
 }
 
 /* ============================ DOT GRID ============================ */
-const NICE = [1,2,5,10,20,50,100,200,500,1e3,2e3,5e3,1e4,2e4,5e4,1e5,2e5,5e5,1e6,2e6,5e6,1e7,2e7,5e7,1e8];
+const NICE = [1,2,5,10,20,50,100,200,500,1e3,2e3,5e3,1e4,2e4,5e4,1e5,2e5,5e5,1e6,2e6,5e6,1e7,2e7,5e7,1e8,2e8,5e8,1e9,2e9,5e9];
 function dotPlan(count) {
   if (count <= 0) return { per:1, dots:0 };
   for (const per of NICE) {
@@ -718,17 +882,31 @@ function fillDots(host, count, animate) {
   const frag = document.createDocumentFragment();
   for (let i = 0; i < dots; i++) {
     const s = document.createElement('i');
-    if (animate && !REDUCED) s.style.setProperty('--d', (i * (600 / Math.max(dots,1)) ) + 'ms');
+    if (animate && !REDUCED) s.style.setProperty('--d', (i * (600 / Math.max(dots,1))) + 'ms');
     frag.appendChild(s);
   }
   host.appendChild(frag);
   return per;
 }
+const perCap = (per, noun) => per === 1 ? `each ● = 1 ${noun.replace(/s$/, '')}` : `each ● = ${fmtCount(per)} ${noun}`;
 
 /* ============================ CARDS ============================ */
 function buildCards() {
   const host = $('#cards');
   host.innerHTML = '';
+  /* ask-result slot (hidden until first question) */
+  const ask = document.createElement('article');
+  ask.className = 'card ask hidden'; ask.id = 'askCard';
+  ask.style.setProperty('--cat', 'var(--gold)');
+  ask.innerHTML = `
+    <div class="cat-line"><span class="dot"></span>Your question · price book</div>
+    <div class="big mono" data-v="0">0</div>
+    <div class="label"></div>
+    <div class="dots" aria-hidden="true"></div>
+    <div class="dots-cap"></div>
+    <div class="src"><span class="q-note"></span><span class="q-echo"></span></div>`;
+  host.appendChild(ask);
+
   UNITS.forEach((u, i) => {
     const cat = CATS.find(c => c.id === u.cat);
     const el = document.createElement('article');
@@ -762,13 +940,12 @@ function buildCards() {
 function renderCards() {
   const p = potB();
   $('#emptyNote').style.display = p === 0 ? 'block' : 'none';
-  document.querySelectorAll('#cards .card:not(.duration)').forEach(el => {
+  document.querySelectorAll('#cards .card:not(.duration):not(.ask)').forEach(el => {
     const u = UNITS[el.dataset.i];
     const count = p * B / u.unit;
     countUp(el.querySelector('.big'), count, v => fmtCount(v));
     const per = fillDots(el.querySelector('.dots'), count, true);
-    el.querySelector('.dots-cap').textContent = count <= 0 ? '' :
-      (per === 1 ? `each ● = 1 ${u.noun.replace(/s$/, '') || 'unit'}` : `each ● = ${fmtInt(per)} ${u.noun}`);
+    el.querySelector('.dots-cap').textContent = count <= 0 ? '' : perCap(per, u.noun);
   });
   document.querySelectorAll('#cards .card.duration').forEach(el => {
     const pr = PROGRAMS[el.dataset.pi];
@@ -780,9 +957,69 @@ function renderCards() {
     el.querySelector('.dur-cap').textContent = p === 0 ? '' :
       (years >= 10 ? 'bar shows a full decade — it goes further' : 'bar scale: one decade');
   });
+  renderAskCard();
 }
 
-/* ============================ SCALE BARS ============================ */
+/* ============================ ASK THE LEDGER ============================ */
+const normalize = s => ' ' + s.toLowerCase().replace(/[^a-z0-9\- ]+/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
+function findCatalog(query) {
+  const q = normalize(query);
+  let best = null, bestLen = 0;
+  for (const item of CATALOG) {
+    for (const alias of item.q) {
+      const a = alias.toLowerCase();
+      if ((q.includes(' ' + a + ' ') || q.includes(' ' + a + 's ') || q.includes(' ' + a + 'es ')) && a.length > bestLen) {
+        best = item; bestLen = a.length;
+      }
+    }
+  }
+  return best;
+}
+function renderAskCard() {
+  const card = $('#askCard');
+  if (!lastAsk) { card.classList.add('hidden'); return; }
+  card.classList.remove('hidden');
+  const p = potB();
+  const { item, query } = lastAsk;
+  if (!item) {
+    card.querySelector('.big').textContent = '?';
+    card.querySelector('.big').dataset.v = 0;
+    card.querySelector('.label').textContent = 'not in the price book yet — try one of the suggestions below the box';
+    card.querySelector('.dots').innerHTML = '';
+    card.querySelector('.dots-cap').textContent = '';
+    card.querySelector('.q-note').textContent = 'built-in price book, ~80 items';
+    card.querySelector('.q-echo').textContent = '“' + query + '”';
+    return;
+  }
+  const count = p * B / item.unit;
+  countUp(card.querySelector('.big'), count, v => fmtCount(v));
+  card.querySelector('.label').textContent = item.noun;
+  const per = fillDots(card.querySelector('.dots'), count, true);
+  card.querySelector('.dots-cap').textContent = count <= 0 ? '' : (per === 1 ? 'each ● = 1' : `each ● = ${fmtCount(per)}`);
+  card.querySelector('.q-note').textContent = `${item.note} · ${fmtUnitPrice(item.unit)} each, ballpark`;
+  card.querySelector('.q-echo').textContent = '“' + query + '”';
+}
+function wireAsk() {
+  const input = $('#askInput');
+  const go = () => {
+    const query = input.value.trim();
+    if (!query) return;
+    lastAsk = { query, item: findCatalog(query) };
+    renderAskCard();
+    $('#askCard').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
+  };
+  $('#askBtn').addEventListener('click', go);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+  const sug = $('#askSuggest');
+  ASK_SUGGESTIONS.forEach(s => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = s;
+    b.addEventListener('click', () => { input.value = s; go(); });
+    sug.appendChild(b);
+  });
+}
+
+/* ============================ SCALE — dot blocks ============================ */
 function buildScale() {
   const host = $('#scaleBars');
   host.innerHTML = '';
@@ -791,7 +1028,7 @@ function buildScale() {
     row.className = 'bar-row' + (isYou ? ' you' : '');
     row.innerHTML = `
       <div class="bar-top"><span class="bar-name">${label}${small ? ` <small>${small}</small>` : ''}</span><span class="bar-val mono"></span></div>
-      <div class="bar-track"><div class="bar-fill"></div></div>`;
+      <div class="dotstrip"></div>`;
     host.appendChild(row);
     return row;
   };
@@ -802,22 +1039,33 @@ function buildScale() {
 function renderScale() {
   const p = potB();
   $('#scaleTitle').textContent = p === 0 ? 'How big is that, really?' : `How big is ${fmtB(p)}, really?`;
-  const max = Math.max(p, ...ANNUALS.map(a => a.amt));
-  const you = $('#youBar');
-  you.querySelector('.bar-val').textContent = fmtB(p);
-  you.querySelector('.bar-fill').style.width = (p / max * 100) + '%';
-  document.querySelectorAll('#scaleBars .bar-row:not(.you)').forEach(row => {
-    const amt = parseFloat(row.dataset.amt);
-    row.querySelector('.bar-val').textContent = fmtB(amt);
-    row.querySelector('.bar-fill').style.width = Math.max(amt / max * 100, 0.4) + '%';
-  });
+  const maxVal = Math.max(p, ...ANNUALS.map(a => a.amt));
+  const PER_CHOICES = [0.25, 0.5, 1, 2, 5, 10];
+  const perDot = PER_CHOICES.find(c => maxVal / c <= 240) ?? 10;
+  $('#scaleLegend').lastElementChild.textContent =
+    `each dot = ${perDot >= 1 ? '$' + perDot + ' billion' : '$' + (perDot*1000) + ' million'} of spending, everywhere in this section`;
+  const strip = (row, val, isYou) => {
+    const host = row.querySelector('.dotstrip');
+    host.innerHTML = '';
+    const n = Math.max(1, Math.round(val / perDot));
+    const faint = val < perDot * 0.6;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < n; i++) {
+      const d = document.createElement('i');
+      if (faint) d.className = 'faint';
+      if (!REDUCED) d.style.setProperty('--d', (i * (450 / n)) + 'ms');
+      frag.appendChild(d);
+    }
+    host.appendChild(frag);
+    row.querySelector('.bar-val').textContent = fmtB(val);
+  };
+  strip($('#youBar'), p, true);
+  document.querySelectorAll('#scaleBars .bar-row:not(.you)').forEach(row => strip(row, parseFloat(row.dataset.amt), false));
   const kicker = $('#scaleKicker');
   if (p === 0) { kicker.style.display = 'none'; return; }
   kicker.style.display = 'block';
   const nea = ANNUALS[ANNUALS.length - 1];
-  const yearsNEA = p / nea.amt;
-  const yearsParks = p / 3.3;
-  kicker.innerHTML = `Your selection could run the <strong>National Endowment for the Arts for ${fmtInt(yearsNEA)} years</strong> — or every national park in America for ${fmtInt(yearsParks)}.`;
+  kicker.innerHTML = `Your selection could run the <strong>National Endowment for the Arts for ${fmtInt(p / nea.amt)} years</strong> — or every national park in America for ${fmtInt(p / 3.3)}.`;
 }
 
 /* ============================ JOBS ============================ */
@@ -859,7 +1107,7 @@ const io = new IntersectionObserver(entries => {
     }
     io.unobserve(e.target);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 /* safety: if the observer is throttled (background tab), never leave content hidden */
 setTimeout(() => {
@@ -881,16 +1129,20 @@ function renderAll() {
   renderJobsLine();
 }
 
+buildWarChips();
 buildLedger();
 buildChips();
 buildCards();
 buildScale();
 buildJobs();
+wireAsk();
 renderAll();
 
 /* debug/QA: ?jump=<id> lands instantly with motion completed; ?solo=<id> shows one section only */
 const qaParams = new URLSearchParams(location.search);
-const jump = qaParams.get('jump'), solo = qaParams.get('solo');
+const qaAlias = { ledger: 'workbench', tradeoffs: 'workbench' };
+let jump = qaParams.get('jump'), solo = qaParams.get('solo');
+jump = qaAlias[jump] || jump; solo = qaAlias[solo] || solo;
 if (jump || solo) {
   document.documentElement.classList.add('no-anim');
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));

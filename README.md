@@ -14,15 +14,23 @@ python3 -m http.server 4173 --directory .
 
 ## Features
 
+- **Side-by-side ledgers** — the war ledger (sticky, left) and the people's
+  ledger (right) share the screen on desktop, so checking a line item updates
+  the trade-offs in view; stacked on mobile.
 - **The war ledger** — 13 real appropriations from recent legislation (FY25
   NDAA, the 2025 reconciliation act, the April 2024 supplemental, CBO/GAO
-  program estimates), multi-selectable with a sticky running "receipt"
-  (total, per-household, per-congressional-district).
+  program estimates), filterable by sector (missile defense, aircraft, ships,
+  nuclear, foreign aid, packages), with a running "receipt" (total,
+  per-household, per-congressional-district).
+- **Ask the ledger** — a prompt box that prices anything from a built-in
+  price book of ~80 everyday items ("how many diapers?", "years of rent",
+  "MRI scans"). Instant, offline, no API calls.
 - **The people's ledger** — 23 trade-off cards (18 unit-price cards + 5
   "runs the whole program for X" duration cards), filterable by policy type,
   each with an animated isotype dot grid and a named federal source.
-- **Perspective bars** — your selection beside the annual budgets of SNAP,
-  NIH, Title I, Head Start, NCI, the Park Service, CPB, and the NEA.
+- **Perspective in dots** — your selection and the annual budgets of SNAP,
+  NIH, Title I, Head Start, NCI, the Park Service, CPB, and the NEA drawn to
+  one scale: each dot = $1B. The NEA is one faint dot.
 - **Employment dividend** — jobs-per-dollar multipliers vs. military spending
   (Peltier, Costs of War Project, 2025).
 - Light ("bond paper") and dark ("engraved plate") themes; respects
@@ -37,11 +45,12 @@ CRFB, Costs of War). Method caveats are stated on the page: time spans
 differ and are labeled, unit costs are national averages, comparisons are
 illustrative.
 
-To update numbers, edit the `DEFENSE`, `UNITS`, `PROGRAMS`, `ANNUALS`, and
-`JOBS` arrays at the top of the `<script>` block in `index.html`.
+To update numbers, edit the `DEFENSE`, `UNITS`, `PROGRAMS`, `ANNUALS`,
+`JOBS`, and `CATALOG` arrays at the top of the `<script>` block in
+`index.html`.
 
 ## QA hooks
 
 - `?jump=<section-id>` — land instantly on a section with all motion completed
-- `?solo=<section-id>` — render one section only (`ledger`, `tradeoffs`,
-  `scale`, `jobs`, `method`, `colophon`)
+- `?solo=<section-id>` — render one section only (`workbench`, `scale`,
+  `jobs`, `method`, `colophon`; `ledger`/`tradeoffs` alias to `workbench`)
